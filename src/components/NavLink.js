@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom'
 
-const NavLink = ({txt}) => {
+const NavLink = ({txt, link}) => {
     return (
         <div className="NavLink">
-            <button>{txt}</button>
+            <Link to={link}>
+                <button>{txt}</button>
+            </Link>
         </div>
     )
 }
