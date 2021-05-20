@@ -24,12 +24,11 @@ body {
       grid-template-columns: 1fr 4fr;
   -ms-grid-rows: 1fr;
       grid-template-rows: 1fr;
-      grid-template-areas: "menu ." "menu .";
+      grid-template-areas: "menu .";
 }
 
 .App .Menu {
   -ms-grid-row: 1;
-  -ms-grid-row-span: 2;
   -ms-grid-column: 1;
   grid-area: menu;
   display: -webkit-box;
@@ -78,5 +77,61 @@ body {
   border: none;
   background: none;
   cursor: pointer;
+}
+
+.App .Home {
+  height: 100%;
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 2fr;
+      grid-template-columns: 1fr 2fr;
+  -ms-grid-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      grid-template-areas: "balance transactions" ". .";
+}
+
+.App .Home .balance {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: balance;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.App .Home .transactions {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: transactions;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.App .Home .transactions .Transaction {
+  width: 80%;
+  font-size: 12px;
+}
+
+.App .Home .card {
+  margin: 10px;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
 }
 /*# sourceMappingURL=index.css.map */

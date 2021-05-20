@@ -1,7 +1,9 @@
 const path = require('path')
 
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron')
 const isDev = require('electron-is-dev')
+
+const Store = require('./store')
 
 // Conditionally include the dev tools installer to load React Dev Tools
 let installExtension, REACT_DEVELOPER_TOOLS
@@ -18,23 +20,60 @@ if (require("electron-squirrel-startup")) {
 }
 
 function createWindow () {
-  const win = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-        // preload: path.join(__dirname, 'preload.js'),
-        webSecurity: !isDev
+    let {width, height} = store.get('windowBounds')
 
-    }
+    const win = new BrowserWindow({
+        width: width,
+        height: height,
+        webPreferences: {
+            preload: path.join(__dirname, 'preload.js'),
+            webSecurity: !isDev,
+        }
   })
+
+  ipcMain.handle('theme:toggle', () => {
+    if (nativeTheme.shouldUseDarkColors) {
+        nativeTheme.themeSource = 'light'
+      } else {
+        nativeTheme.themeSource = 'dark'
+      }
+      return nativeTheme.shouldUseDarkColors
+  })
+  
+  ipcMain.handle('rpc:creds', () => {
+        const creds = store.get('rpcCredentials')
+        return creds
+  })
+
+  win.on('resize', () => {
+    let { width, height } = win.getBounds()
+    store.set('windowBounds', { width, height })
+  });
 
   isDev ? win.loadURL('http://localhost:3000') : win.loadFile('index.html')
 
-  // Open the DevTools.
+  // Open the DevTools
   if (isDev) {
     win.webContents.openDevTools({ mode: "detach" })
   }
 }
+
+// Load user-preferences.js
+const store = new Store({
+    configName: 'user-preferences',
+    defaults: {
+        windowBounds: {
+            width: 800, 
+            height: 600 
+        },
+        rpcCredentials: {
+            username: 'user',
+            password: 'password',
+            host:"localhost",
+            port: 22555
+        }
+  }
+})
 
 app.whenReady().then(() => {
   createWindow()

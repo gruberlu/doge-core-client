@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
-import {getinfo, getbalance} from './requests'
+import Transaction from './Transaction'
 
 const Home = () => {
 
@@ -9,17 +9,50 @@ const Home = () => {
     const [data, setData] = useState({});
   
     useEffect(() => {
-        axios.all([getinfo, getbalance])
-        .then(axios.spread((...responses) => {
-            let result = {}
-            result['getinfo'] = responses[0].data.result
-            result['getbalance'] = responses[1].data.result
-            setData(result)
-            setIsLoaded(true)
-        })).catch((error) => {
-            console.log(error)
-            setError(error)
-        })
+        const fetchData = async () => {
+            const creds = await window.electron.getCredentials()
+            const auth = {
+                username:creds.username, 
+                password:creds.password
+            }
+            const url = `http://${creds.host}:${creds.port}/`
+
+            const getbalance = axios.post(url, {
+                jsonrpc: "1.0",
+                method: 'getbalance',
+                params: []
+            },
+            {
+                auth: auth
+            })
+            
+            const listtransactions = axios.post(url, {
+                jsonrpc: "1.0",
+                method: 'listtransactions',
+                params: []
+            },
+            {
+                auth: auth
+            })
+
+            axios.all([getbalance, listtransactions])
+            .then(axios.spread((...responses) => {
+                let result = {}
+                result['getbalance'] = responses[0].data.result
+                result['listtransactions'] = responses[1].data.result
+                setData(result)
+                setIsLoaded(true)
+            })).catch((error) => {
+                console.log(error)
+                setError(error)
+            })
+        }
+
+        fetchData()
+        
+        const updateData = setInterval(fetchData, 10000)
+
+        return() => clearInterval(updateData)
 
     }, [])
     
@@ -29,8 +62,13 @@ const Home = () => {
         return <div>Loading...</div>;
       } else {
         return (
-            <div>
-                <div>Balance: {data.getbalance}</div>
+            <div className="Home">
+                <div className="balance card">Balance: {data.getbalance}</div>
+                <div className="transactions card">
+                    {data.listtransactions.map((tx, index) => (
+                        <Transaction key={index} tx={tx} />
+                    ))}
+                </div>
             </div>
         )
     }
