@@ -52,15 +52,17 @@ function createWindow () {
 
   isDev ? win.loadURL('http://localhost:3000') : win.loadFile('index.html')
 
-  // Open the DevTools
   if (isDev) {
-    win.webContents.openDevTools({ mode: "detach" })
+    // Open the DevTools
+    win.webContents.once('dom-ready', () => {
+        win.webContents.openDevTools()
+    })
   }
 }
 
 // Load user-preferences.js
 const store = new Store({
-    configName: 'user-preferences',
+    configName: 'config',
     defaults: {
         windowBounds: {
             width: 800, 

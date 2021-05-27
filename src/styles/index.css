@@ -1,8 +1,3 @@
-@font-face {
-  font-family: 'Poppins';
-  src: url(https://fonts.googleapis.com/css2?family=Poppins&display=swap);
-}
-
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -11,8 +6,8 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
-  color: #1e1e1e;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #d8d8d8;
 }
 
 .App {
@@ -20,17 +15,28 @@ body {
   width: 100vw;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 4fr;
-      grid-template-columns: 1fr 4fr;
+  -ms-grid-columns: 1fr 6fr;
+      grid-template-columns: 1fr 6fr;
   -ms-grid-rows: 1fr;
       grid-template-rows: 1fr;
-      grid-template-areas: "menu .";
+      grid-template-areas: "sidebar .";
+  background: linear-gradient(60deg, transparent 20%, rgba(255, 255, 255, 0.2));
+  background-color: #af893c;
+  overflow: hidden;
 }
 
-.App .Menu {
+.App .doge-svg {
+  position: absolute;
+  left: 15vw;
+  bottom: 0px;
+  width: 248.9px;
+  height: 264.1px;
+}
+
+.App .Sidebar {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
-  grid-area: menu;
+  grid-area: sidebar;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -38,13 +44,18 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  background: #292b2e;
 }
 
-.App .Menu .NavLinks {
+.App .Sidebar .NavLinks {
   height: 80%;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -52,15 +63,19 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-.App .Menu .NavLinks .NavLink {
-  color: #1e1e1e;
+.App .Sidebar .NavLinks .NavLink {
+  color: #d8d8d8;
   width: 100%;
-  height: 20%;
+  height: 15%;
+  padding: 0px 10px 0px 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -70,13 +85,185 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  text-decoration: none;
 }
 
-.App .Menu .NavLinks .NavLink button {
+.App .Sidebar .NavLinks .NavLink button {
   outline: none;
   border: none;
   background: none;
   cursor: pointer;
+  color: #d8d8d8;
+  font-size: 14px;
+  font-weight: bold;
+  display: none;
+  -webkit-transform: translateY(30px);
+          transform: translateY(30px);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 5px;
+}
+
+.App .Sidebar .NavLinks .NavLink svg {
+  position: absolute;
+  color: #d8d8d8;
+  width: 25px;
+  height: auto;
+  margin: 0px 20px 0px 0px;
+}
+
+.App .Sidebar .NavLinks .NavLink svg:hover + button {
+  display: block;
+}
+
+.App .Sidebar .NavLinks .NavLink:hover, .App .Sidebar .NavLinks .active {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.App .Sidebar button {
+  outline: none;
+  border: none;
+  background: none;
+  color: #d8d8d8;
+}
+
+.App .Sidebar .info {
+  cursor: pointer;
+}
+
+.App form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.App form .Inputfield {
+  position: relative;
+  width: 200px;
+  height: 50px;
+  overflow: hidden;
+}
+
+.App form .Inputfield input {
+  border: none;
+  outline: none;
+  background: none;
+  height: 100%;
+  width: 100%;
+  padding: 20px 0px 0px 0px;
+  color: #d8d8d8;
+}
+
+.App form .Inputfield label {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.App form .Inputfield label::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-bottom: 3px solid #d8d8d8;
+  left: 0px;
+  bottom: -1px;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+
+.App form .Inputfield .labelcontent {
+  position: absolute;
+  bottom: 5px;
+  left: 0px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.App form .Inputfield input:focus + label .labelcontent, .App form .Inputfield input:valid + label .labelcontent {
+  -webkit-transform: translateY(-20px);
+          transform: translateY(-20px);
+  font-size: 12px;
+}
+
+.App form .Inputfield input:focus + label::after, .App form .Inputfield input:valid + label::after {
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+}
+
+.App form button {
+  outline: none;
+  background: none;
+  cursor: pointer;
+  margin: 20px 0px 0px 0px;
+  border: #d8d8d8 solid 1px;
+  color: #d8d8d8;
+  width: 100px;
+  height: 25px;
+  border-radius: 15px;
+}
+
+.App form button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.App form .error {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  width: 200px;
+  border-radius: 5px;
+  color: #e45825;
+  margin: 20px 0px 0px 0px;
+  border: #e45825 solid 2px;
+}
+
+.App form .error * {
+  margin: 5px;
+}
+
+.App form .success {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  width: 200px;
+  border-radius: 5px;
+  color: #16a82f;
+  margin: 20px 0px 0px 0px;
+  border: #16a82f solid 2px;
+}
+
+.App form .success * {
+  margin: 5px;
 }
 
 .App .Home {
@@ -88,27 +275,82 @@ body {
       grid-template-columns: 1fr 2fr;
   -ms-grid-rows: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
-      grid-template-areas: "balance transactions" ". .";
+      grid-template-areas: "info transactions" ". .";
+  z-index: 1;
 }
 
-.App .Home .balance {
+.App .Home .Card {
+  margin: 10px;
+  padding: 10px;
+  background: rgba(41, 43, 46, 0.8);
+  color: #d8d8d8;
+}
+
+.App .Home .Card .header {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0px 0px 20px 0px;
+}
+
+.App .Home .infoCard {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
-  grid-area: balance;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  grid-area: info;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
-.App .Home .transactions {
+.App .Home .infoCard .label {
+  font-size: 20px;
+  margin: 0px 0px 5px 0px;
+}
+
+.App .Home .infoCard .value {
+  text-align: right;
+}
+
+.App .Home .infoCard .container {
+  margin: 0px 0px 10px 0px;
+}
+
+.App .Home .transactionsCard {
   -ms-grid-row: 1;
   -ms-grid-column: 2;
   grid-area: transactions;
+}
+
+.App .Home .transactionsCard .Transaction {
+  font-size: 14px;
+}
+
+.App .Home .transactionsCard .Transaction .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0px 0px 5px 0px;
+}
+
+.App .Home .transactionsCard .Transaction .amount {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.App .Home .transactionsCard .abandoned {
+  color: #787878;
+}
+
+.App .Home .seperator {
+  height: 1px;
+  width: 100%;
+  background: #787878;
+  margin: 5px 0px 10px 0px;
+}
+
+.App .Send {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -116,22 +358,12 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-}
-
-.App .Home .transactions .Transaction {
-  width: 80%;
-  font-size: 12px;
-}
-
-.App .Home .card {
-  margin: 10px;
-  padding: 5px;
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 5px;
+  z-index: 1;
 }
 /*# sourceMappingURL=index.css.map */

@@ -1,0 +1,70 @@
+.Sidebar{
+    grid-area: sidebar;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    background: rgb(41, 43, 46);
+
+    .NavLinks{
+        height: 80%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .NavLink{
+            color: $textcolor;
+            width: 100%;
+            height: 15%;
+            padding: 0px 10px 0px 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+
+            button{
+                outline: none;
+                border: none;
+                background: none;
+                cursor: pointer;
+                color: $textcolor;
+                font-size: 14px;
+                font-weight: bold;
+                display: none;
+                transform: translateY(30px);
+                background: rgba(0,0,0,0.2);
+                padding: 5px;
+            }
+
+            svg{
+                position: absolute;
+                color: $textcolor;
+                width: 25px;
+                height: auto;
+                margin: 0px 20px 0px 0px;
+            }
+
+            svg:hover + button {
+                display: block;
+            }
+        }
+
+        .NavLink:hover, .active{
+            background: rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    button{
+        outline: none;
+        border: none;
+        background: none;
+        color: $textcolor;
+    }
+
+    .info{
+        cursor: pointer;
+    }
+}

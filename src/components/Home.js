@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import {Card} from '@material-ui/core'
 import axios from 'axios'
 import Transaction from './Transaction'
 
@@ -29,17 +30,27 @@ const Home = () => {
             const listtransactions = axios.post(url, {
                 jsonrpc: "1.0",
                 method: 'listtransactions',
+                params: ["*", 5]
+            },
+            {
+                auth: auth
+            })
+            
+            const getblockcount = axios.post(url, {
+                jsonrpc: "1.0",
+                method: 'getblockcount',
                 params: []
             },
             {
                 auth: auth
             })
 
-            axios.all([getbalance, listtransactions])
+            axios.all([getbalance, listtransactions, getblockcount])
             .then(axios.spread((...responses) => {
                 let result = {}
                 result['getbalance'] = responses[0].data.result
-                result['listtransactions'] = responses[1].data.result
+                result['listtransactions'] = responses[1].data.result.reverse()
+                result['getblockcount'] = responses[2].data.result
                 setData(result)
                 setIsLoaded(true)
             })).catch((error) => {
@@ -63,12 +74,25 @@ const Home = () => {
       } else {
         return (
             <div className="Home">
-                <div className="balance card">Balance: {data.getbalance}</div>
-                <div className="transactions card">
+                <Card className="infoCard Card">
+                    <div className="header">Info:</div>
+                    <div className="container">
+                        <div className="label">Balance: </div>
+                        <div className="value">{data.getbalance.toFixed(2)} DOGE</div>
+                    </div>
+                    <div className="seperator"></div>
+                    <div className="container">
+                        <div className="label">Blockcount: </div>
+                        <div className="value">{data.getblockcount}</div>
+                    </div>
+                </Card>
+
+                <Card className="transactionsCard Card">
+                    <div className="header">Recent TXs:</div>
                     {data.listtransactions.map((tx, index) => (
                         <Transaction key={index} tx={tx} />
                     ))}
-                </div>
+                </Card>
             </div>
         )
     }

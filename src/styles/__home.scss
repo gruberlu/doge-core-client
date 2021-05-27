@@ -5,33 +5,68 @@
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas: 
-    "balance transactions"
+    "info transactions"
     ". .";
+    z-index: 1;
 
-    .balance{
-        grid-area: balance;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-    }
-    
-    .transactions{
-        grid-area: transactions;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
+    .Card{
+        margin: 10px;
+        padding: 10px;
+        background: rgba(41, 43, 46, 0.8);
+        color: $textcolor;
 
-        .Transaction{
-            width: 80%;
-            font-size: 12px;
+        .header{
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0px 0px 20px 0px;
         }
     }
 
-    .card{
-        margin: 10px;
-        padding: 5px;
-        background: rgba(0, 0, 0, 0.4);
-        border-radius: 5px;
+    .infoCard{
+        grid-area: info;
+        height: fit-content;
+
+        .label{
+            font-size: 20px;
+            margin: 0px 0px 5px 0px;
+        }
+
+        .value{
+            text-align: right;
+        }
+
+        .container{
+            margin: 0px 0px 10px 0px;
+        }
+    }
+    
+    .transactionsCard{
+        grid-area: transactions;
+
+        .Transaction{
+            font-size: 14px;
+            
+            .row{
+                display: flex;
+                justify-content: space-between;
+                margin: 0px 0px 5px 0px;
+            }
+
+            .amount{
+                font-size: 16px;
+                font-weight: bold;
+            }
+        }
+
+        .abandoned{
+            color: rgb(120, 120, 120);
+        }
+    }
+
+    .seperator{
+        height: 1px;
+        width: 100%;
+        background: rgb(120, 120, 120);
+        margin: 5px 0px 10px 0px;
     }
 }
