@@ -27,7 +27,7 @@ function createWindow () {
         height: height,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
-            webSecurity: !isDev,
+            webSecurity: !isDev
         }
   })
 
@@ -37,6 +37,10 @@ function createWindow () {
       } else {
         nativeTheme.themeSource = 'dark'
       }
+      return nativeTheme.shouldUseDarkColors
+  })
+  
+  ipcMain.handle('theme:isdark', () => {
       return nativeTheme.shouldUseDarkColors
   })
   

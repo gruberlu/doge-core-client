@@ -9,19 +9,6 @@
     ". .";
     z-index: 1;
 
-    .Card{
-        margin: 10px;
-        padding: 10px;
-        background: rgba(41, 43, 46, 0.8);
-        color: $textcolor;
-
-        .header{
-            font-size: 24px;
-            font-weight: bold;
-            margin: 0px 0px 20px 0px;
-        }
-    }
-
     .infoCard{
         grid-area: info;
         height: fit-content;
@@ -33,6 +20,15 @@
 
         .value{
             text-align: right;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-weight: bold;
+            letter-spacing: 1px;
+
+            .Coin{
+                margin: 0px 0px 0px 5px;
+            }
         }
 
         .container{
@@ -52,9 +48,30 @@
                 margin: 0px 0px 5px 0px;
             }
 
+            .send{
+                color: #f44336;
+            }
+
             .amount{
                 font-size: 16px;
                 font-weight: bold;
+                letter-spacing: 1px;
+            }
+
+            button{
+                background: none;
+                outline: none;
+                border: none;
+                color: $textcolor;
+                cursor: pointer;
+            }
+
+            .MuiTooltip-popper{
+                white-space: pre-wrap;
+
+                .MuiTooltip-tooltip, .MuiTooltip-arrow::before{
+                    background-color: rgba(41, 43, 46, 1);
+                }
             }
         }
 

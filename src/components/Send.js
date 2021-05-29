@@ -1,4 +1,6 @@
 import {useState} from 'react'
+import {Snackbar, Card} from '@material-ui/core'
+import MuiAlert from '@material-ui/lab/Alert'
 import * as Icons from '@material-ui/icons'
 import axios from 'axios'
 import Inputfield from './Inputfield'
@@ -7,7 +9,7 @@ const Send = () => {
 
     const [address, setAddress] = useState()
     const [amount, setAmount] = useState()
-    const [comment, setComment] = useState()
+    const [label, setLabel] = useState()
     const [result, setResult] = useState(null)
     const [error, setError] = useState(null)
 
@@ -25,7 +27,7 @@ const Send = () => {
             const sendtoaddress = axios.post(url, {
                 jsonrpc: "1.0",
                 method: 'sendtoaddress',
-                params: [address, amount, comment]
+                params: [address, amount, "", label]
             },
             {
                 auth: auth
@@ -45,17 +47,43 @@ const Send = () => {
         postData()
     }
 
+    const Alert = (props) => {
+        return <MuiAlert elevation={6} variant="filled" {...props} />;
+    }
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setError(null);
+        setResult(null)
+    }
+
     return (
         <div className="Send">
-            <h1>Send</h1>
-            <form>
-                <Inputfield id="address" label="Address" onChange={(value) => {setAddress(value)}} />
-                <Inputfield id="amount" label="Amount" onChange={(value) => {setAmount(value)}} />
-                <Inputfield id="comment" label="Comment" onChange={(value) => {setComment(value)}} />
-                <button type="submit" onClick={(e) => {submitForm(e)}}>Submit</button>
-                {result ? <div className="success"><p>Transaction created!</p></div> : <></>}
-                {error ? <div className="error"><Icons.Error /><p>Error! Input invalid or no connection to RPC Server!</p></div> : <></>}
-            </form>
+            <Card className="Card">
+                <h1>Send to Address</h1>
+                <div className="formwrapper">
+                    <div className="icons">
+                        <Icons.Person />
+                        <Icons.MonetizationOn />
+                        <Icons.Sms />
+                    </div>
+                    <form>
+                        <Inputfield id="address" label="Address" required={true} onChange={(value) => {setAddress(value)}} />
+                        <Inputfield id="amount" label="Amount" required={true} onChange={(value) => {setAmount(value)}} />
+                        <Inputfield id="label" label="Label" onChange={(value) => {setLabel(value)}} />
+                        <button type="submit" onClick={(e) => {submitForm(e)}}>Submit</button>
+                    </form>
+                </div>
+            </Card>
+            <Snackbar className="snackbox" autoHideDuration={6000} open={result} onClose={handleClose}>
+                <Alert severity="success" onClose={handleClose}>Success! {result}</Alert>
+            </Snackbar>
+            <Snackbar className="snackbox" autoHideDuration={6000} open={error} onClose={handleClose}>
+                <Alert severity="error" onClose={handleClose}>Error!</Alert>
+            </Snackbar>
         </div>
     )
 }

@@ -7,7 +7,7 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  color: #d8d8d8;
+  color: #e6e6e6;
 }
 
 .App {
@@ -31,6 +31,25 @@ body {
   bottom: 0px;
   width: 248.9px;
   height: 264.1px;
+  margin: 0px 0px 10px 0px;
+}
+
+.App .Coin {
+  width: 15px;
+  height: 15px;
+}
+
+.App .Card {
+  margin: 10px;
+  padding: 10px;
+  background: rgba(41, 43, 46, 0.8);
+  color: #e6e6e6;
+}
+
+.App .Card .header {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0px 0px 20px 0px;
 }
 
 .App .Sidebar {
@@ -72,7 +91,7 @@ body {
 }
 
 .App .Sidebar .NavLinks .NavLink {
-  color: #d8d8d8;
+  color: #e6e6e6;
   width: 100%;
   height: 15%;
   padding: 0px 10px 0px 10px;
@@ -93,7 +112,7 @@ body {
   border: none;
   background: none;
   cursor: pointer;
-  color: #d8d8d8;
+  color: #e6e6e6;
   font-size: 14px;
   font-weight: bold;
   display: none;
@@ -105,7 +124,7 @@ body {
 
 .App .Sidebar .NavLinks .NavLink svg {
   position: absolute;
-  color: #d8d8d8;
+  color: #e6e6e6;
   width: 25px;
   height: auto;
   margin: 0px 20px 0px 0px;
@@ -123,7 +142,7 @@ body {
   outline: none;
   border: none;
   background: none;
-  color: #d8d8d8;
+  color: #e6e6e6;
 }
 
 .App .Sidebar .info {
@@ -148,7 +167,7 @@ body {
 
 .App form .Inputfield {
   position: relative;
-  width: 200px;
+  width: 100%;
   height: 50px;
   overflow: hidden;
 }
@@ -160,7 +179,7 @@ body {
   height: 100%;
   width: 100%;
   padding: 20px 0px 0px 0px;
-  color: #d8d8d8;
+  color: #e6e6e6;
 }
 
 .App form .Inputfield label {
@@ -170,7 +189,7 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  border-bottom: 1px solid #d8d8d8;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .App form .Inputfield label::after {
@@ -178,7 +197,7 @@ body {
   position: absolute;
   height: 100%;
   width: 100%;
-  border-bottom: 3px solid #d8d8d8;
+  border-bottom: 3px solid #e6e6e6;
   left: 0px;
   bottom: -1px;
   -webkit-transform: translateX(-100%);
@@ -208,62 +227,35 @@ body {
           transform: translateX(0%);
 }
 
+.App form .inputinfo {
+  width: 100%;
+  font-size: 10px;
+  margin: 5px 0px 5px 0px;
+  color: rgba(216, 216, 216, 0.8);
+}
+
 .App form button {
   outline: none;
-  background: none;
   cursor: pointer;
+  background: none;
   margin: 20px 0px 0px 0px;
-  border: #d8d8d8 solid 1px;
-  color: #d8d8d8;
+  border: rgba(216, 216, 216, 0.8) solid 1px;
+  color: #e6e6e6;
   width: 100px;
-  height: 25px;
+  height: 30px;
   border-radius: 15px;
 }
 
 .App form button:hover {
-  background: rgba(255, 255, 255, 0.2);
+  border: #e6e6e6 solid 2px;
 }
 
-.App form .error {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background: rgba(255, 255, 255, 0.2);
-  width: 200px;
-  border-radius: 5px;
-  color: #e45825;
-  margin: 20px 0px 0px 0px;
-  border: #e45825 solid 2px;
+.App .MuiSwitch-switchBase, .App .MuiSwitch-colorSecondary.Mui-checked {
+  color: #e6e6e6;
 }
 
-.App form .error * {
-  margin: 5px;
-}
-
-.App form .success {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background: rgba(255, 255, 255, 0.2);
-  width: 200px;
-  border-radius: 5px;
-  color: #16a82f;
-  margin: 20px 0px 0px 0px;
-  border: #16a82f solid 2px;
-}
-
-.App form .success * {
-  margin: 5px;
+.App .MuiSwitch-colorSecondary.Mui-checked + .MuiSwitch-track {
+  background-color: #1bc41b;
 }
 
 .App .Home {
@@ -277,19 +269,6 @@ body {
       grid-template-rows: 1fr 1fr;
       grid-template-areas: "info transactions" ". .";
   z-index: 1;
-}
-
-.App .Home .Card {
-  margin: 10px;
-  padding: 10px;
-  background: rgba(41, 43, 46, 0.8);
-  color: #d8d8d8;
-}
-
-.App .Home .Card .header {
-  font-size: 24px;
-  font-weight: bold;
-  margin: 0px 0px 20px 0px;
 }
 
 .App .Home .infoCard {
@@ -308,6 +287,21 @@ body {
 
 .App .Home .infoCard .value {
   text-align: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.App .Home .infoCard .value .Coin {
+  margin: 0px 0px 0px 5px;
 }
 
 .App .Home .infoCard .container {
@@ -334,9 +328,30 @@ body {
   margin: 0px 0px 5px 0px;
 }
 
+.App .Home .transactionsCard .Transaction .send {
+  color: #f44336;
+}
+
 .App .Home .transactionsCard .Transaction .amount {
   font-size: 16px;
   font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.App .Home .transactionsCard .Transaction button {
+  background: none;
+  outline: none;
+  border: none;
+  color: #e6e6e6;
+  cursor: pointer;
+}
+
+.App .Home .transactionsCard .Transaction .MuiTooltip-popper {
+  white-space: pre-wrap;
+}
+
+.App .Home .transactionsCard .Transaction .MuiTooltip-popper .MuiTooltip-tooltip, .App .Home .transactionsCard .Transaction .MuiTooltip-popper .MuiTooltip-arrow::before {
+  background-color: #292b2e;
 }
 
 .App .Home .transactionsCard .abandoned {
@@ -354,6 +369,20 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0px 0px 10% 0px;
+  position: relative;
+}
+
+.App .Send .Card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -365,5 +394,48 @@ body {
       -ms-flex-align: center;
           align-items: center;
   z-index: 1;
+  width: 70%;
+  padding: 5% 0px 5% 0px;
+}
+
+.App .Send .formwrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 60%;
+}
+
+.App .Send .formwrapper .icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0px 0px 10% 0px;
+  margin: 0px 10px 0px 0px;
+}
+
+.App .Send .formwrapper form {
+  width: 100%;
+}
+
+.App .Send .formwrapper form button {
+  -webkit-transform: translateX(-14px);
+          transform: translateX(-14px);
+}
+
+.App .Send .snackbox {
+  position: absolute;
+}
+
+.App.dark-mode {
+  background-color: black;
 }
 /*# sourceMappingURL=index.css.map */

@@ -1,9 +1,43 @@
 .Send{
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 1;
+    padding: 0px 0px 10% 0px;
+    position: relative;
 
-    
+    .Card{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        width: 70%;
+        padding: 5% 0px 5% 0px;
+    }
+
+    .formwrapper{
+        display: flex;
+        width: 60%;
+
+        .icons{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0px 0px 10% 0px;
+            margin: 0px 10px 0px 0px;
+        }
+
+        form{
+            width: 100%;
+
+            button{
+                transform: translateX(-14px);
+            }
+        }
+    }
+
+    .snackbox{
+        position: absolute;
+    }
 }

@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import {Card} from '@material-ui/core'
 import axios from 'axios'
 import Transaction from './Transaction'
+import {ReactComponent as Coin} from '../assets/icon.svg'
 
 const Home = () => {
 
@@ -78,7 +79,10 @@ const Home = () => {
                     <div className="header">Info:</div>
                     <div className="container">
                         <div className="label">Balance: </div>
-                        <div className="value">{data.getbalance.toFixed(2)} DOGE</div>
+                        <div className="value">
+                            <div>{data.getbalance.toFixed(2)}</div>
+                            <Coin className="Coin"/>
+                        </div>
                     </div>
                     <div className="seperator"></div>
                     <div className="container">
@@ -90,7 +94,7 @@ const Home = () => {
                 <Card className="transactionsCard Card">
                     <div className="header">Recent TXs:</div>
                     {data.listtransactions.map((tx, index) => (
-                        <Transaction key={index} tx={tx} />
+                        <Transaction key={index} tx={tx} index={index} />
                     ))}
                 </Card>
             </div>

@@ -6,6 +6,7 @@ import Receive from './components/Receive'
 import Transactions from './components/Transactions'
 import Settings from './components/Settings'
 import {ReactComponent as DogeSVG} from './assets/doge.svg'
+import {ReactComponent as CoolDogeSVG} from './assets/cooldoge.svg'
 
 function App() {
     return (
@@ -19,7 +20,8 @@ function App() {
                     <Route path='/transactions' component={Transactions} />
                     <Route path='/settings' component={Settings} />
                 </Switch>
-                <DogeSVG className='doge-svg'/>
+                {/* <DogeSVG className='doge-svg'/> */}
+                <CoolDogeSVG className="doge-svg" />
             </div>
         </Router>
     );

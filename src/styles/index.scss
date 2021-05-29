@@ -1,4 +1,4 @@
-$textcolor: rgb(216, 216, 216);
+$textcolor: rgb(230, 230, 230);
 
 * {
     box-sizing: border-box;
@@ -29,6 +29,25 @@ body {
         bottom: 0px;
         width: 248.9px;
         height: 264.1px;
+        margin: 0px 0px 10px 0px;
+    }
+
+    .Coin{
+        width: 15px;
+        height: 15px;
+    }
+
+    .Card{
+        margin: 10px;
+        padding: 10px;
+        background: rgba(41, 43, 46, 0.8);
+        color: $textcolor;
+
+        .header{
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0px 0px 20px 0px;
+        }
     }
 
     @import '__sidebar';
@@ -36,4 +55,8 @@ body {
     @import '__home';
     @import '__send';
     
+}
+
+.App.dark-mode{
+    background-color: black;
 }

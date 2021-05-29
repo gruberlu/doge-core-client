@@ -6,7 +6,7 @@ form{
 
     .Inputfield{
         position: relative;
-        width: 200px;
+        width: 100%;
         height: 50px;
         overflow: hidden;
 
@@ -59,51 +59,34 @@ form{
         }
     }
 
+    .inputinfo{
+        width: 100%;
+        font-size: 10px;
+        margin: 5px 0px 5px 0px;
+        color: rgba(216, 216, 216, 0.8);
+    }
+
     button{
         outline: none;
-        background: none;
         cursor: pointer;
+        background: none;
         margin: 20px 0px 0px 0px;
-        border: $textcolor solid 1px;
+        border: rgba(216, 216, 216, 0.8) solid 1px;
         color: $textcolor;
         width: 100px;
-        height: 25px;
+        height: 30px;
         border-radius: 15px;
     }
 
     button:hover{
-        background: rgba(255, 255, 255, 0.2);
+        border: $textcolor solid 2px;
     }
+}
 
-    .error{
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        background: rgba(255, 255, 255, 0.2);
-        width: 200px;
-        border-radius: 5px;
-        color: rgb(228, 88, 37);
-        margin: 20px 0px 0px 0px;
-        border: rgb(228, 88, 37) solid 2px;
+.MuiSwitch-switchBase, .MuiSwitch-colorSecondary.Mui-checked{
+    color: $textcolor;
+}
 
-        *{
-            margin: 5px
-        }
-    }
-    
-    .success{
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        background: rgba(255, 255, 255, 0.2);
-        width: 200px;
-        border-radius: 5px;
-        color: rgb(22, 168, 47);
-        margin: 20px 0px 0px 0px;
-        border: rgb(22, 168, 47) solid 2px;
-
-        *{
-            margin: 5px
-        }
-    }
+.MuiSwitch-colorSecondary.Mui-checked + .MuiSwitch-track{
+    background-color: rgb(27, 196, 27);
 }
