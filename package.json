@@ -61,6 +61,8 @@
     "config": {
         "forge": {
             "packagerConfig": {},
+            "icon": "src/icons/mac/icon.icns",
+            "name": "SuchClient",
             "makers": [
                 {
                     "name": "@electron-forge/maker-squirrel",
