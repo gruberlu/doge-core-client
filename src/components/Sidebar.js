@@ -13,7 +13,8 @@ const Menu = () => {
             </div>
             <button onClick={(e) => {
                 e.preventDefault()
-                console.log('info')
+                const infoCard = document.querySelector(".InfoCard")
+                infoCard.classList.toggle("hidden")
             }}>
                 <Icons.Info className="info" />
             </button>

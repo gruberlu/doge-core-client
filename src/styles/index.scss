@@ -15,7 +15,7 @@ body {
     height: 100vh;
     width: 100vw;
     display: grid;
-    grid-template-columns: 1fr 6fr;
+    grid-template-columns: 15vw 85vw;
     grid-template-rows: 1fr;
     grid-template-areas: 
     "sidebar .";
@@ -42,6 +42,7 @@ body {
         padding: 10px;
         background: rgba(41, 43, 46, 0.8);
         color: $textcolor;
+        backdrop-filter: blur(6px);
 
         .header{
             font-size: 24px;
@@ -50,10 +51,44 @@ body {
         }
     }
 
+    .InfoCard{
+        position: absolute;
+        width: 85vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: translateX(15vw);
+        backdrop-filter: blur(6px);
+        z-index: 2;
+        
+        .Card{
+            width: 80%;
+            height: 80%;
+            background: rgba(41, 43, 46, 1);
+
+            button{
+                background: none;
+                outline: none;
+                border: none;
+                color: $textcolor;
+                cursor: pointer;
+                position: absolute;
+                right: 5px;
+                top: 5px;
+            }
+        }
+    }
+
+    .hidden{
+        display: none;
+    }
+
     @import '__sidebar';
     @import '__form';
     @import '__home';
     @import '__send';
+    @import '__receive';
     
 }
 

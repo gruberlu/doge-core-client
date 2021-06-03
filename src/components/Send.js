@@ -56,7 +56,7 @@ const Send = () => {
           return;
         }
     
-        setError(null);
+        setError(null)
         setResult(null)
     }
 

@@ -5,6 +5,7 @@ import Send from './components/Send'
 import Receive from './components/Receive'
 import Transactions from './components/Transactions'
 import Settings from './components/Settings'
+import InfoCard from './components/InfoCard'
 import {ReactComponent as DogeSVG} from './assets/doge.svg'
 import {ReactComponent as CoolDogeSVG} from './assets/cooldoge.svg'
 
@@ -22,6 +23,7 @@ function App() {
                 </Switch>
                 {/* <DogeSVG className='doge-svg'/> */}
                 <CoolDogeSVG className="doge-svg" />
+                <InfoCard />
             </div>
         </Router>
     );
