@@ -1,11 +1,5 @@
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import Sidebar from './components/Sidebar'
-import Home from './components/Home'
-import Send from './components/Send'
-import Receive from './components/Receive'
-import Transactions from './components/Transactions'
-import Settings from './components/Settings'
-import InfoCard from './components/InfoCard'
+import {Sidebar, Home, Send, Receive, Transactions, Settings, InfoCard} from './components'
 import {ReactComponent as DogeSVG} from './assets/doge.svg'
 import {ReactComponent as CoolDogeSVG} from './assets/cooldoge.svg'
 
@@ -21,12 +15,12 @@ function App() {
                     <Route path='/transactions' component={Transactions} />
                     <Route path='/settings' component={Settings} />
                 </Switch>
-                {/* <DogeSVG className='doge-svg'/> */}
-                <CoolDogeSVG className="doge-svg" />
+                <DogeSVG className='doge-svg'/>
+                <CoolDogeSVG className='doge-svg-dark' />
                 <InfoCard />
             </div>
         </Router>
-    );
+    )
 }
 
 export default App;

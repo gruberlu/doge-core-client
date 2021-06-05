@@ -5,7 +5,7 @@ import * as Icons from '@material-ui/icons'
 import axios from 'axios'
 import Inputfield from './Inputfield'
 
-const Send = () => {
+export const Send = () => {
 
     const [address, setAddress] = useState()
     const [amount, setAmount] = useState()
@@ -88,4 +88,3 @@ const Send = () => {
     )
 }
 
-export default Send

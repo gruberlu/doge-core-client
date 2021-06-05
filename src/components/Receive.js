@@ -6,7 +6,7 @@ import axios from 'axios'
 import QRCode from 'qrcode.react'
 import Inputfield from './Inputfield'
 
-const Receive = () => {
+export const Receive = () => {
 
     const [label, setLabel] = useState("")
     const [result, setResult] = useState(null)
@@ -99,4 +99,3 @@ const Receive = () => {
     )
 }
 
-export default Receive

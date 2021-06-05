@@ -1,7 +1,7 @@
 import NavLink from './NavLink'
 import * as Icons from '@material-ui/icons'
 
-const Menu = () => {
+export const Sidebar = () => {
     return (
         <div className="Sidebar">
             <div className="NavLinks">
@@ -21,5 +21,3 @@ const Menu = () => {
         </div>
     )
 }
-
-export default Menu

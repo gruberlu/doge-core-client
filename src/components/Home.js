@@ -4,12 +4,12 @@ import axios from 'axios'
 import Transaction from './Transaction'
 import {ReactComponent as Coin} from '../assets/icon.svg'
 
-const Home = () => {
+export const Home = () => {
 
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [data, setData] = useState({});
-  
+    const [error, setError] = useState(null)
+    const [isLoaded, setIsLoaded] = useState(false)
+    const [data, setData] = useState({})
+    
     useEffect(() => {
         const fetchData = async () => {
             const creds = await window.electron.getCredentials()
@@ -94,12 +94,10 @@ const Home = () => {
                 <Card className="transactionsCard Card">
                     <div className="header">Recent TXs:</div>
                     {data.listtransactions.map((tx, index) => (
-                        <Transaction key={index} tx={tx} index={index} />
+                        <Transaction key={index} tx={tx} seperator={index < 4} />
                     ))}
                 </Card>
             </div>
         )
     }
 }
-
-export default Home

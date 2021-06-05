@@ -1,0 +1,60 @@
+.Transactions{
+    z-index: 1;
+
+    .Card{
+        height: 90vh;
+
+        .transactionsWrapper{
+            height: 90%;
+            overflow: scroll;
+            padding: 10px 0px 0px 0px;
+
+            .Transaction{
+                font-size: 14px;
+                
+                .row{
+                    display: flex;
+                    justify-content: space-between;
+                    margin: 0px 0px 5px 0px;
+                }
+            
+                .send{
+                    color: #f44336;
+                }
+            
+                .amount{
+                    font-size: 16px;
+                    font-weight: bold;
+                    letter-spacing: 1px;
+                }
+            
+                button{
+                    background: none;
+                    outline: none;
+                    border: none;
+                    color: $textcolor;
+                    cursor: pointer;
+                }
+            
+                .MuiTooltip-popper{
+                    white-space: pre-wrap;
+            
+                    .MuiTooltip-tooltip, .MuiTooltip-arrow::before{
+                        background-color: rgba(41, 43, 46, 1);
+                    }
+                }
+            }
+            
+            .abandoned{
+                color: rgb(120, 120, 120);
+            }
+            
+            .seperator{
+            height: 1px;
+            width: 100%;
+            background: rgb(120, 120, 120);
+            margin: 5px 0px 10px 0px;
+            }
+        }
+    }
+}

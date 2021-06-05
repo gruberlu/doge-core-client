@@ -23,13 +23,17 @@ body {
     background-color: #af893c;
     overflow: hidden;
 
-    .doge-svg{
+    .doge-svg, .doge-svg-dark{
         position: absolute;
         left: 15vw;
         bottom: 0px;
         width: 248.9px;
         height: 264.1px;
         margin: 0px 0px 10px 0px;
+    }
+
+    .doge-svg{
+        display: none;
     }
 
     .Coin{
@@ -89,9 +93,20 @@ body {
     @import '__home';
     @import '__send';
     @import '__receive';
+    @import '__transactions';
     
 }
 
-.App.dark-mode{
-    background-color: black;
-}
+// @media (prefers-color-scheme: dark){
+//     .App{
+//         background-color: rgb(51, 53, 56);
+    
+//         .doge-svg{
+//             display: none;
+//         }
+    
+//         .doge-svg-dark{
+//             display: block;
+//         }
+//     }
+// }

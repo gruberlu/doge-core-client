@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import {Switch, Card} from '@material-ui/core'
 
-const Settings = () => {
+export const Settings = () => {
     const [theme, setTheme] = useState(window.electron.getTheme().then(theme => theme))
 
     const handleChange = () => {
@@ -24,5 +24,3 @@ const Settings = () => {
         </div>
     )
 }
-
-export default Settings

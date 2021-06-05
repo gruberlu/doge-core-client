@@ -25,13 +25,17 @@ body {
   overflow: hidden;
 }
 
-.App .doge-svg {
+.App .doge-svg, .App .doge-svg-dark {
   position: absolute;
   left: 15vw;
   bottom: 0px;
   width: 248.9px;
   height: 264.1px;
   margin: 0px 0px 10px 0px;
+}
+
+.App .doge-svg {
+  display: none;
 }
 
 .App .Coin {
@@ -563,7 +567,68 @@ body {
   position: absolute;
 }
 
-.App.dark-mode {
-  background-color: black;
+.App .Transactions {
+  z-index: 1;
+}
+
+.App .Transactions .Card {
+  height: 90vh;
+}
+
+.App .Transactions .Card .transactionsWrapper {
+  height: 90%;
+  overflow: scroll;
+  padding: 10px 0px 0px 0px;
+}
+
+.App .Transactions .Card .transactionsWrapper .Transaction {
+  font-size: 14px;
+}
+
+.App .Transactions .Card .transactionsWrapper .Transaction .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0px 0px 5px 0px;
+}
+
+.App .Transactions .Card .transactionsWrapper .Transaction .send {
+  color: #f44336;
+}
+
+.App .Transactions .Card .transactionsWrapper .Transaction .amount {
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.App .Transactions .Card .transactionsWrapper .Transaction button {
+  background: none;
+  outline: none;
+  border: none;
+  color: #e6e6e6;
+  cursor: pointer;
+}
+
+.App .Transactions .Card .transactionsWrapper .Transaction .MuiTooltip-popper {
+  white-space: pre-wrap;
+}
+
+.App .Transactions .Card .transactionsWrapper .Transaction .MuiTooltip-popper .MuiTooltip-tooltip, .App .Transactions .Card .transactionsWrapper .Transaction .MuiTooltip-popper .MuiTooltip-arrow::before {
+  background-color: #292b2e;
+}
+
+.App .Transactions .Card .transactionsWrapper .abandoned {
+  color: #787878;
+}
+
+.App .Transactions .Card .transactionsWrapper .seperator {
+  height: 1px;
+  width: 100%;
+  background: #787878;
+  margin: 5px 0px 10px 0px;
 }
 /*# sourceMappingURL=index.css.map */

@@ -3,7 +3,7 @@ import {Tooltip, ClickAwayListener} from '@material-ui/core'
 import * as Icons from '@material-ui/icons'
 import {ReactComponent as Coin} from '../assets/icon.svg'
 
-const Transaction = ({tx, index}) => {
+const Transaction = ({tx, seperator}) => {
     const [tooltip, setTooltip] = useState(false)
 
     const handleTooltipOpen = () => {
@@ -58,7 +58,7 @@ const Transaction = ({tx, index}) => {
                 </ClickAwayListener>
             </div>
         </div>
-        {index < 4 ? <div className="seperator"></div> : <></>}
+        {seperator ? <div className="seperator"></div> : <></>}
         </>
     )
 }

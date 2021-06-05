@@ -1,7 +1,7 @@
 import {Card} from '@material-ui/core'
 import * as Icons from '@material-ui/icons'
 
-const InfoCard = () => {
+export const InfoCard = () => {
 
     const closeInfo = (e) => {
         e.preventDefault()
@@ -19,4 +19,3 @@ const InfoCard = () => {
     )
 }
 
-export default InfoCard
