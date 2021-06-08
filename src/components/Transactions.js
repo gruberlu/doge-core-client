@@ -1,5 +1,7 @@
 import {useState, useEffect} from 'react'
 import {Card} from '@material-ui/core'
+import Skeleton from '@material-ui/lab/Skeleton'
+import MuiAlert from '@material-ui/lab/Alert'
 import axios from 'axios'
 import Transaction from './Transaction'
 
@@ -45,10 +47,26 @@ export const Transactions = () => {
         return() => clearInterval(updateData)
     }, [])
 
+    const Alert = (props) => {
+        return <MuiAlert elevation={6} variant="filled" {...props} />;
+    }
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+
+        setError(null)
+    }
+
     if (error) {
-        return <div>Error: {error.message}</div>;
+        return (
+            <div className="Transactions">
+                    <Alert severity="error" className="snackbar" onClose={handleClose}>Error! No connection to RPC Server!</Alert>
+            </div> 
+        )
       } else if (!isLoaded) {
-        return <div>Loading...</div>;
+        return <Skeleton variant="rect" className="skeleton" height="90%" />
       } else {
         return (
             <div className="Transactions">
@@ -56,7 +74,7 @@ export const Transactions = () => {
                     <h1>Transactions</h1>
                     <div className="transactionsWrapper">
                         {transactions.map((tx, index) => (
-                                <Transaction key={index} tx={tx} seperator={true} />
+                                <Transaction key={index} tx={tx} seperator={index !== transactions.length - 1} />
                         ))}
                     </div>
                 </Card>

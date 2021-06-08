@@ -95,8 +95,48 @@ body {
   top: 5px;
 }
 
+.App .InfoCard .Card h1 {
+  margin: 0px 0px 10px 0px;
+}
+
+.App .InfoCard .Card .info {
+  width: 90%;
+  height: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.App .InfoCard .Card .info div {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0px 0px 5px 0px;
+}
+
+.App .InfoCard .Card .info div .label {
+  width: 50%;
+  font-weight: bold;
+}
+
 .App .hidden {
   display: none;
+}
+
+.App .skeleton {
+  margin: 10px;
+  border-radius: 5px;
+  background-color: rgba(41, 43, 46, 0.4);
+  z-index: 1;
+}
+
+.App .snackbar {
+  position: absolute;
 }
 
 .App .Sidebar {
@@ -175,10 +215,6 @@ body {
   width: 25px;
   height: auto;
   margin: 0px 20px 0px 0px;
-}
-
-.App .Sidebar .NavLinks .NavLink svg:hover + button {
-  display: block;
 }
 
 .App .Sidebar .NavLinks .NavLink:hover, .App .Sidebar .NavLinks .active {
@@ -315,6 +351,7 @@ body {
   -ms-grid-rows: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
       grid-template-areas: "info transactions" ". .";
+  position: relative;
   z-index: 1;
 }
 
@@ -412,6 +449,13 @@ body {
   margin: 5px 0px 10px 0px;
 }
 
+.App .Home .snackbar {
+  bottom: 25px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
 .App .Send {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -476,10 +520,6 @@ body {
 .App .Send .formwrapper form button {
   -webkit-transform: translateX(-14px);
           transform: translateX(-14px);
-}
-
-.App .Send .snackbox {
-  position: absolute;
 }
 
 .App .Receive {
@@ -563,16 +603,21 @@ body {
   margin: 10px 0px 0px 0px;
 }
 
-.App .Receive .snackbox {
-  position: absolute;
-}
-
 .App .Transactions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
   z-index: 1;
 }
 
 .App .Transactions .Card {
   height: 90vh;
+  width: 90%;
+  max-width: 650px;
 }
 
 .App .Transactions .Card .transactionsWrapper {
@@ -630,5 +675,76 @@ body {
   width: 100%;
   background: #787878;
   margin: 5px 0px 10px 0px;
+}
+
+.App .Transactions .snackbar {
+  bottom: 25px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.App .Settings {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0px 0px 10% 0px;
+  position: relative;
+}
+
+.App .Settings .Card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 1;
+  width: 70%;
+  padding: 5% 0px 5% 0px;
+}
+
+.App .Settings .Card form {
+  width: 80%;
+}
+
+.App .Settings .Card form h1 {
+  margin: 0px 0px 20px 0px;
+}
+
+.App .Settings .Card form div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 80%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0px 0px 10px 0px;
+}
+
+.App .Settings .Card form div input {
+  outline: none;
+  border: none;
+  color: #e6e6e6;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  text-align: center;
 }
 /*# sourceMappingURL=index.css.map */

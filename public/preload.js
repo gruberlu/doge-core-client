@@ -15,5 +15,8 @@ contextBridge.exposeInMainWorld(
             const response = await ipcRenderer.invoke('rpc:creds')
             return response
         },
+        setCredentials: (creds) => {
+            ipcRenderer.invoke('rpc:setcreds', creds)
+        },
     }
 )

@@ -1,7 +1,6 @@
 export * from './Home'
 export * from './InfoCard'
 export * from './Inputfield'
-export * from './NavLink'
 export * from './Receive'
 export * from './Send'
 export * from './Settings'

@@ -49,6 +49,10 @@ function createWindow () {
         return creds
   })
 
+  ipcMain.handle('rpc:setcreds', (event, creds) => {
+      store.set('rpcCredentials', creds)
+  })
+
   win.on('resize', () => {
     let { width, height } = win.getBounds()
     store.set('windowBounds', { width, height })

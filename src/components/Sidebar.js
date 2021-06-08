@@ -1,15 +1,15 @@
-import NavLink from './NavLink'
+import Link from './Link'
 import * as Icons from '@material-ui/icons'
 
 export const Sidebar = () => {
     return (
         <div className="Sidebar">
             <div className="NavLinks">
-                <NavLink txt='home' link='/' icon={<Icons.Home />} />
-                <NavLink txt='send' link='/send'icon={<Icons.CallMade />} />
-                <NavLink txt='receive' link='/receive' icon={<Icons.CallReceived />} />
-                <NavLink txt='transactions' link='/transactions' icon={<Icons.SyncAlt />} />
-                <NavLink txt='settings' link='/settings' icon={<Icons.Settings />} />
+                <Link txt='home' activeClassName="active" link='/' icon={<Icons.Home />} />
+                <Link txt='send' activeClassName="active" link='/send'icon={<Icons.CallMade />} />
+                <Link txt='receive' activeClassName="active" link='/receive' icon={<Icons.CallReceived />} />
+                <Link txt='transactions' activeClassName="active" link='/transactions' icon={<Icons.SyncAlt />} />
+                <Link txt='settings' activeClassName="active" link='/settings' icon={<Icons.Settings />} />
             </div>
             <button onClick={(e) => {
                 e.preventDefault()

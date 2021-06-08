@@ -1,5 +1,7 @@
 import {useState, useEffect} from 'react'
 import {Card} from '@material-ui/core'
+import MuiAlert from '@material-ui/lab/Alert'
+import Skeleton from '@material-ui/lab/Skeleton'
 import axios from 'axios'
 import Transaction from './Transaction'
 import {ReactComponent as Coin} from '../assets/icon.svg'
@@ -67,11 +69,30 @@ export const Home = () => {
         return() => clearInterval(updateData)
 
     }, [])
+
+    const Alert = (props) => {
+        return <MuiAlert elevation={6} variant="filled" {...props} />;
+    }
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+
+        setError(null)
+    }
     
     if (error) {
-        return <div>Error: {error.message}</div>;
+        return (
+            <div className="Home">
+                    <Alert severity="error" className="snackbar" onClose={handleClose}>Error! No connection to RPC Server!</Alert>
+            </div> 
+        )
       } else if (!isLoaded) {
-        return <div>Loading...</div>;
+        return <div className="Home">
+            <Skeleton variant="rect" className="infoCard skeleton" height="50%" />
+            <Skeleton variant="rect" className="transactionsCard skeleton" height="100%" />
+            </div>
       } else {
         return (
             <div className="Home">

@@ -78,10 +78,10 @@ export const Send = () => {
                     </form>
                 </div>
             </Card>
-            <Snackbar className="snackbox" autoHideDuration={6000} open={result} onClose={handleClose}>
+            <Snackbar className="snackbar" autoHideDuration={6000} open={result} onClose={handleClose}>
                 <Alert severity="success" onClose={handleClose}>Success! {result}</Alert>
             </Snackbar>
-            <Snackbar className="snackbox" autoHideDuration={6000} open={error} onClose={handleClose}>
+            <Snackbar className="snackbar" autoHideDuration={6000} open={error} onClose={handleClose}>
                 <Alert severity="error" onClose={handleClose}>Error!</Alert>
             </Snackbar>
         </div>

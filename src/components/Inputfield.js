@@ -1,9 +1,9 @@
 
-const Inputfield = ({label, onChange, required}) => {
+const Inputfield = ({label, onChange, required, type}) => {
     return (
         <>
             <div className="Inputfield">
-                <input required onChange={(event) => {onChange(event.target.value)}}></input>
+                <input required type={type ? type : ""} onChange={(event) => {onChange(event.target.value)}}></input>
                 <label>
                     <span className="labelcontent">{label}</span>
                 </label>

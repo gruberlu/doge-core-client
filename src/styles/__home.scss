@@ -7,6 +7,7 @@
     grid-template-areas: 
     "info transactions"
     ". .";
+    position: relative;
     z-index: 1;
 
     .infoCard{
@@ -85,5 +86,11 @@
         width: 100%;
         background: rgb(120, 120, 120);
         margin: 5px 0px 10px 0px;
+    }
+
+    .snackbar{
+        bottom: 25px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }

@@ -1,8 +1,13 @@
 .Transactions{
+    display: flex;
+    justify-content: center;
+    position: relative;
     z-index: 1;
 
     .Card{
         height: 90vh;
+        width: 90%;
+        max-width: 650px;
 
         .transactionsWrapper{
             height: 90%;
@@ -56,5 +61,11 @@
             margin: 5px 0px 10px 0px;
             }
         }
+    }
+
+    .snackbar{
+        bottom: 25px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }

@@ -89,10 +89,10 @@ export const Receive = () => {
                             </div>
                  : <></>}
             </Card>
-            <Snackbar className="snackbox" autoHideDuration={6000} open={success} onClose={handleClose}>
+            <Snackbar className="snackbar" autoHideDuration={6000} open={success} onClose={handleClose}>
                 <Alert severity="success" onClose={handleClose}>Success!</Alert>
             </Snackbar>
-            <Snackbar className="snackbox" autoHideDuration={6000} open={error} onClose={handleClose}>
+            <Snackbar className="snackbar" autoHideDuration={6000} open={error} onClose={handleClose}>
                 <Alert severity="error" onClose={handleClose}>Error!</Alert>
             </Snackbar>
         </div>
