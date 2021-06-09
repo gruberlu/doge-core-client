@@ -6,7 +6,7 @@ export const Sidebar = () => {
         <div className="Sidebar">
             <div className="NavLinks">
                 <Link txt='home' activeClassName="active" link='/' icon={<Icons.Home />} />
-                <Link txt='send' activeClassName="active" link='/send'icon={<Icons.CallMade />} />
+                <Link txt='send' activeClassName="active" link='/send' icon={<Icons.CallMade />} />
                 <Link txt='receive' activeClassName="active" link='/receive' icon={<Icons.CallReceived />} />
                 <Link txt='transactions' activeClassName="active" link='/transactions' icon={<Icons.SyncAlt />} />
                 <Link txt='settings' activeClassName="active" link='/settings' icon={<Icons.Settings />} />
