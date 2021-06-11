@@ -317,20 +317,68 @@ body {
   color: rgba(216, 216, 216, 0.8);
 }
 
+.App form #switch {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  margin: 0;
+  z-index: 1;
+}
+
+.App form .switch-label {
+  position: relative;
+  display: inline-block;
+  -webkit-transform: translateX(-150%);
+          transform: translateX(-150%);
+  width: 40px;
+  height: 20px;
+  border: 1px solid #eeeeee;
+  background-color: transparent;
+  border-radius: 15px;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  cursor: pointer;
+}
+
+.App form .switch-label:after {
+  content: '';
+  position: absolute;
+  left: 1px;
+  top: 1px;
+  width: 16px;
+  height: 16px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  -webkit-transition: left 0.3s ease-out;
+  transition: left 0.3s ease-out;
+}
+
+.App form #switch:checked + .switch-label {
+  background-color: #42d77d;
+}
+
+.App form #switch:checked + .switch-label:after {
+  left: 21px;
+}
+
 .App form button {
   outline: none;
   cursor: pointer;
-  background: none;
+  background: #af893c;
   margin: 20px 0px 0px 0px;
-  border: rgba(216, 216, 216, 0.8) solid 1px;
-  color: #e6e6e6;
+  border: none;
+  -webkit-box-shadow: 2px 0px 4px 0px rgba(0, 0, 0, 0.2), 4px 0px 10px 0px rgba(0, 0, 0, 0.19);
+          box-shadow: 2px 0px 4px 0px rgba(0, 0, 0, 0.2), 4px 0px 10px 0px rgba(0, 0, 0, 0.19);
+  color: rgba(0, 0, 0, 0.8);
   width: 100px;
   height: 30px;
   border-radius: 15px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .App form button:hover {
-  border: #e6e6e6 solid 2px;
+  color: #e6e6e6;
 }
 
 .App .MuiSwitch-switchBase, .App .MuiSwitch-colorSecondary.Mui-checked {
@@ -621,9 +669,9 @@ body {
 }
 
 .App .Transactions .Card .transactionsWrapper {
-  height: 90%;
+  height: 100%;
   overflow: scroll;
-  padding: 10px 0px 0px 0px;
+  padding: 10px 0px 50px 0px;
 }
 
 .App .Transactions .Card .transactionsWrapper .Transaction {
