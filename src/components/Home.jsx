@@ -1,23 +1,23 @@
-import {useState, useEffect} from 'react'
-import {Card} from '@material-ui/core'
+import { useState, useEffect } from 'react'
+import { Card } from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert'
 import Skeleton from '@material-ui/lab/Skeleton'
 import axios from 'axios'
 import Transaction from './Transaction'
-import {ReactComponent as Coin} from '../assets/icon.svg'
+import { ReactComponent as Coin } from '../assets/icon.svg'
 
 export const Home = () => {
 
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [data, setData] = useState({})
-    
+
     useEffect(() => {
         const fetchData = async () => {
             const creds = await window.electron.getCredentials()
             const auth = {
-                username:creds.username, 
-                password:creds.password
+                username: creds.username,
+                password: creds.password
             }
             const url = `http://${creds.host}:${creds.port}/`
 
@@ -26,47 +26,47 @@ export const Home = () => {
                 method: 'getbalance',
                 params: []
             },
-            {
-                auth: auth
-            })
-            
+                {
+                    auth: auth
+                })
+
             const listtransactions = axios.post(url, {
                 jsonrpc: "1.0",
                 method: 'listtransactions',
                 params: ["*", 5]
             },
-            {
-                auth: auth
-            })
-            
+                {
+                    auth: auth
+                })
+
             const getblockcount = axios.post(url, {
                 jsonrpc: "1.0",
                 method: 'getblockcount',
                 params: []
             },
-            {
-                auth: auth
-            })
+                {
+                    auth: auth
+                })
 
             axios.all([getbalance, listtransactions, getblockcount])
-            .then(axios.spread((...responses) => {
-                let result = {}
-                result['getbalance'] = responses[0].data.result
-                result['listtransactions'] = responses[1].data.result.reverse()
-                result['getblockcount'] = responses[2].data.result
-                setData(result)
-                setIsLoaded(true)
-            })).catch((error) => {
-                console.log(error)
-                setError(error)
-            })
+                .then(axios.spread((...responses) => {
+                    let result = {}
+                    result['getbalance'] = responses[0].data.result
+                    result['listtransactions'] = responses[1].data.result.reverse()
+                    result['getblockcount'] = responses[2].data.result
+                    setData(result)
+                    setIsLoaded(true)
+                })).catch((error) => {
+                    console.log(error)
+                    setError(error)
+                })
         }
 
         fetchData()
-        
+
         const updateData = setInterval(fetchData, 10000)
 
-        return() => clearInterval(updateData)
+        return () => clearInterval(updateData)
 
     }, [])
 
@@ -76,24 +76,24 @@ export const Home = () => {
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
-          return;
+            return;
         }
 
         setError(null)
     }
-    
+
     if (error) {
         return (
             <div className="Home">
-                    <Alert severity="error" className="snackbar" onClose={handleClose}>Error! No connection to RPC Server!</Alert>
-            </div> 
+                <Alert severity="error" className="snackbar" onClose={handleClose}>Error! No connection to RPC Server!</Alert>
+            </div>
         )
-      } else if (!isLoaded) {
+    } else if (!isLoaded) {
         return <div className="Home">
             <Skeleton variant="rect" className="infoCard skeleton" height="50%" />
             <Skeleton variant="rect" className="transactionsCard skeleton" height="100%" />
-            </div>
-      } else {
+        </div>
+    } else {
         return (
             <div className="Home">
                 <Card className="infoCard Card">
@@ -102,7 +102,7 @@ export const Home = () => {
                         <div className="label">Balance: </div>
                         <div className="value">
                             <div>{data.getbalance.toFixed(2)}</div>
-                            <Coin className="Coin"/>
+                            <Coin className="Coin" />
                         </div>
                     </div>
                     <div className="seperator"></div>

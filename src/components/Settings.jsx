@@ -68,6 +68,7 @@ export const Settings = () => {
                 <form>
                     <h1>Settings</h1>
                     <div><label>Darkmode:</label><input id="switch" type="checkbox" checked={theme} onChange={() => handleChange()}></input><label className="switch-label" htmlFor="switch"></label></div>
+                    <h3>RPC Credentials:</h3>
                     <div><label>Username:</label><input value={username} required={true} onChange={(e) => { setUsername(e.target.value) }} /></div>
                     <div><label>Password:</label><input value={password} required type="password" onChange={(e) => { setPassword(e.target.value) }} /></div>
                     <div><label>Host:</label><input value={host} required onChange={(e) => { setHost(e.target.value) }} /></div>

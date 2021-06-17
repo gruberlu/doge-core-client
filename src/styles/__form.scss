@@ -35,7 +35,7 @@ form{
             position: absolute;
             height: 100%;
             width: 100%;
-            border-bottom: 3px solid $textcolor;
+            border-bottom: 2px solid $textcolor;
             left: 0px;
             bottom: -1px;
             transform: translateX(-100%);
@@ -112,7 +112,7 @@ form{
         background: rgb(175, 137, 60);
         margin: 20px 0px 0px 0px;
         border: none;
-        box-shadow: 2px 0px 4px 0px rgba(0, 0, 0, 0.2), 4px 0px 10px 0px rgba(0, 0, 0, 0.19);
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2), 0px 4px 10px 0px rgba(0, 0, 0, 0.19);
         color: rgba(0, 0, 0, 0.8);
         width: 100px;
         height: 30px;

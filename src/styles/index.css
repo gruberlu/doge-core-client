@@ -280,7 +280,7 @@ body {
   position: absolute;
   height: 100%;
   width: 100%;
-  border-bottom: 3px solid #e6e6e6;
+  border-bottom: 2px solid #e6e6e6;
   left: 0px;
   bottom: -1px;
   -webkit-transform: translateX(-100%);
@@ -367,8 +367,8 @@ body {
   background: #af893c;
   margin: 20px 0px 0px 0px;
   border: none;
-  -webkit-box-shadow: 2px 0px 4px 0px rgba(0, 0, 0, 0.2), 4px 0px 10px 0px rgba(0, 0, 0, 0.19);
-          box-shadow: 2px 0px 4px 0px rgba(0, 0, 0, 0.2), 4px 0px 10px 0px rgba(0, 0, 0, 0.19);
+  -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2), 0px 4px 10px 0px rgba(0, 0, 0, 0.19);
+          box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2), 0px 4px 10px 0px rgba(0, 0, 0, 0.19);
   color: rgba(0, 0, 0, 0.8);
   width: 100px;
   height: 30px;
@@ -448,6 +448,20 @@ body {
 
 .App .Home .transactionsCard .Transaction {
   font-size: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.App .Home .transactionsCard .Transaction .category {
+  margin: 0px 10px 2% 0px;
+}
+
+.App .Home .transactionsCard .Transaction .tx-wrapper {
+  width: 100%;
 }
 
 .App .Home .transactionsCard .Transaction .row {
@@ -676,6 +690,20 @@ body {
 
 .App .Transactions .Card .transactionsWrapper .Transaction {
   font-size: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.App .Transactions .Card .transactionsWrapper .Transaction .category {
+  margin: 0px 10px 2% 0px;
+}
+
+.App .Transactions .Card .transactionsWrapper .Transaction .tx-wrapper {
+  width: 100%;
 }
 
 .App .Transactions .Card .transactionsWrapper .Transaction .row {
@@ -773,6 +801,11 @@ body {
   margin: 0px 0px 20px 0px;
 }
 
+.App .Settings .Card form h3 {
+  width: 80%;
+  margin: 10px 0px 10px 0px;
+}
+
 .App .Settings .Card form div {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -794,5 +827,7 @@ body {
   padding: 5px;
   background: rgba(255, 255, 255, 0.1);
   text-align: center;
+  -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
 }
 /*# sourceMappingURL=index.css.map */

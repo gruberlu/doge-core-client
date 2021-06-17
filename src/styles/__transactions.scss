@@ -16,7 +16,16 @@
 
             .Transaction{
                 font-size: 14px;
-                
+                display: flex;
+                align-items: center;
+
+                .category{
+                    margin: 0px 10px 2% 0px;
+                }
+
+                .tx-wrapper{
+                    width: 100%;
+                }
                 .row{
                     display: flex;
                     justify-content: space-between;

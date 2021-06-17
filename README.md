@@ -13,8 +13,6 @@ The config file `config.json` is located in `~/Library/Application\ Support/doge
 |windowBounds|width, height|width: 600, height: 400|Width and height of the application's window|
 |rpcCredentials|username, password, host, port|username: "usr", password: "pass", host: "localhost", port: 22555|RPC credentials to connect to the Core Wallet|
 
----
-
 ## Dev Notes
 
 * Run `npm run dev` to start the development server
