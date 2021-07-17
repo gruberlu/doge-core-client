@@ -1,7 +1,7 @@
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import {Sidebar, Home, Send, Receive, Transactions, Settings, InfoCard} from './components'
-import {ReactComponent as DogeSVG} from './assets/doge.svg'
-import {ReactComponent as CoolDogeSVG} from './assets/cooldoge.svg'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Sidebar, Home, Send, Receive, Transactions, Settings, InfoCard } from './components'
+import { ReactComponent as DogeSVG } from './assets/doge.svg'
+import { ReactComponent as CoolDogeSVG } from './assets/cooldoge.svg'
 
 function App() {
     return (
@@ -15,7 +15,7 @@ function App() {
                     <Route path='/transactions' component={Transactions} />
                     <Route path='/settings' component={Settings} />
                 </Switch>
-                <DogeSVG className='doge-svg'/>
+                <DogeSVG className='doge-svg' />
                 <CoolDogeSVG className='doge-svg-dark' />
                 <InfoCard />
             </div>
@@ -23,4 +23,4 @@ function App() {
     )
 }
 
-export default App;
+export default App

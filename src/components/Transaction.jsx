@@ -29,7 +29,6 @@ const Transaction = ({ tx, seperator }) => {
         <>
             <div className={tx.abandoned || tx.confirmations === 0 ? "Transaction abandoned" : "Transaction"}>
                 {tx.category === 'send' ? <Icons.CallMade className="category" /> : <Icons.CallReceived className="category" />}
-                {console.log(tx.category)}
                 <div className="tx-wrapper" >
                     <div className="row">
                         <div className={tx.category === 'send' ? "amount send" : "amount"}>{(tx.amount + (tx.fee ? tx.fee : 0)).toFixed(2)} <Coin className="Coin" /></div>

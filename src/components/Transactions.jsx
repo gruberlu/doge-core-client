@@ -1,5 +1,5 @@
-import {useState, useEffect} from 'react'
-import {Card} from '@material-ui/core'
+import { useState, useEffect } from 'react'
+import { Card } from '@material-ui/core'
 import Skeleton from '@material-ui/lab/Skeleton'
 import MuiAlert from '@material-ui/lab/Alert'
 import axios from 'axios'
@@ -16,8 +16,8 @@ export const Transactions = () => {
 
             const creds = await window.electron.getCredentials()
             const auth = {
-                username:creds.username, 
-                password:creds.password
+                username: creds.username,
+                password: creds.password
             }
             const url = `http://${creds.host}:${creds.port}/`
 
@@ -26,12 +26,11 @@ export const Transactions = () => {
                 method: 'listtransactions',
                 params: ["*", 100]
             },
-            {
-                auth: auth
-            })
+                {
+                    auth: auth
+                })
 
             listtransactions.then(response => {
-                console.log(response)
                 setTransactions(response.data.result.reverse())
                 setIsLoaded(true)
             }).catch((error) => {
@@ -44,7 +43,7 @@ export const Transactions = () => {
 
         const updateData = setInterval(fetchData, 10000)
 
-        return() => clearInterval(updateData)
+        return () => clearInterval(updateData)
     }, [])
 
     const Alert = (props) => {
@@ -53,7 +52,7 @@ export const Transactions = () => {
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
-          return;
+            return;
         }
 
         setError(null)
@@ -62,19 +61,19 @@ export const Transactions = () => {
     if (error) {
         return (
             <div className="Transactions">
-                    <Alert severity="error" className="snackbar" onClose={handleClose}>Error! No connection to RPC Server!</Alert>
-            </div> 
+                <Alert severity="error" className="snackbar" onClose={handleClose}>Error! No connection to RPC Server!</Alert>
+            </div>
         )
-      } else if (!isLoaded) {
+    } else if (!isLoaded) {
         return <Skeleton variant="rect" className="skeleton" height="90%" />
-      } else {
+    } else {
         return (
             <div className="Transactions">
                 <Card className="Card">
                     <h1>Transactions</h1>
                     <div className="transactionsWrapper">
                         {transactions.map((tx, index) => (
-                                <Transaction key={index} tx={tx} seperator={index !== transactions.length - 1} />
+                            <Transaction key={index} tx={tx} seperator={index !== transactions.length - 1} />
                         ))}
                     </div>
                 </Card>
