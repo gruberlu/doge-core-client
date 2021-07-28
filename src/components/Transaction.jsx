@@ -31,7 +31,7 @@ const Transaction = ({ tx, seperator }) => {
                 {tx.category === 'send' ? <Icons.CallMade className="category" /> : <Icons.CallReceived className="category" />}
                 <div className="tx-wrapper" >
                     <div className="row">
-                        <div className={tx.category === 'send' ? "amount send" : "amount"}>{(tx.amount + (tx.fee ? tx.fee : 0)).toFixed(2)} <Coin className="Coin" /></div>
+                        <div className={tx.amount < 0 ? "amount send" : "amount"}>{(tx.amount + (tx.fee ? tx.fee : 0)).toFixed(2)} <Coin className="Coin" /></div>
                         <div>{date.toLocaleString()}</div>
                     </div>
                     <div className="row">
