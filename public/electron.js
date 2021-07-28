@@ -58,7 +58,7 @@ function createWindow() {
         store.set('windowBounds', { width, height })
     });
 
-    isDev ? win.loadURL('http://localhost:3000') : win.loadFile('index.html')
+    isDev ? win.loadURL('http://localhost:3000') : win.loadFile(path.join(__dirname, 'index.html'))
 
     if (isDev) {
         // Open the DevTools
