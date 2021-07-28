@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 import { Sidebar, Home, Send, Receive, Transactions, Settings, InfoCard } from './components'
 import { ReactComponent as DogeSVG } from './assets/doge.svg'
 import { ReactComponent as CoolDogeSVG } from './assets/cooldoge.svg'
