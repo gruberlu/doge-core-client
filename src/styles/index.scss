@@ -27,12 +27,12 @@ body {
         position: absolute;
         left: 15vw;
         bottom: 0px;
-        width: 248.9px;
-        height: 264.1px;
         margin: 0px 0px 10px 0px;
     }
 
-    .doge-svg{
+    .doge-svg-dark{
+        max-width: 238.9px;
+        max-height: 254.1px;
         display: none;
     }
 
@@ -131,16 +131,14 @@ body {
     
 }
 
-// @media (prefers-color-scheme: dark){
-//     .App{
-//         background-color: rgb(51, 53, 56);
-    
-//         .doge-svg{
-//             display: none;
-//         }
-    
-//         .doge-svg-dark{
-//             display: block;
-//         }
-//     }
-// }
+@media (prefers-color-scheme: dark){
+    .App {
+        .doge-svg{
+            display: none;
+        }
+        
+        .doge-svg-dark{
+            display: block;
+        }
+    }
+}
