@@ -31,34 +31,12 @@ function createWindow() {
         }
     })
 
-    ipcMain.handle('theme:toggle', () => {
-        if (nativeTheme.shouldUseDarkColors) {
-            nativeTheme.themeSource = 'light'
-        } else {
-            nativeTheme.themeSource = 'dark'
-        }
-        return nativeTheme.shouldUseDarkColors
-    })
-
-    ipcMain.handle('theme:isdark', () => {
-        return nativeTheme.shouldUseDarkColors
-    })
-
-    ipcMain.handle('rpc:creds', () => {
-        const creds = store.get('rpcCredentials')
-        return creds
-    })
-
-    ipcMain.handle('rpc:setcreds', (event, creds) => {
-        store.set('rpcCredentials', creds)
-    })
-
     win.on('resize', () => {
         let { width, height } = win.getBounds()
         store.set('windowBounds', { width, height })
     });
 
-    isDev ? win.loadURL('http://localhost:3000') : win.loadFile(path.join(__dirname, 'index.html'))
+    isDev ? win.loadURL('http://localhost:3000') : win.loadFile(path.join(__dirname, '../build/index.html'))
 
     if (isDev) {
         // Open the DevTools
@@ -83,6 +61,28 @@ const store = new Store({
             port: 22555
         }
     }
+})
+
+ipcMain.handle('theme:toggle', () => {
+    if (nativeTheme.shouldUseDarkColors) {
+        nativeTheme.themeSource = 'light'
+    } else {
+        nativeTheme.themeSource = 'dark'
+    }
+    return nativeTheme.shouldUseDarkColors
+})
+
+ipcMain.handle('theme:isdark', () => {
+    return nativeTheme.shouldUseDarkColors
+})
+
+ipcMain.handle('rpc:creds', () => {
+    const creds = store.get('rpcCredentials')
+    return creds
+})
+
+ipcMain.handle('rpc:setcreds', (event, creds) => {
+    store.set('rpcCredentials', creds)
 })
 
 app.whenReady().then(() => {

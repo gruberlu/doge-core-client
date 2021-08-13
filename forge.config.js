@@ -1,8 +1,6 @@
-const path = require('path')
-
 module.exports = {
     packagerConfig: {
-        icon: path.join(__dirname, "assets/icons/mac/icon.icns"),
+        icon: "./src/assets/icons/mac/icon",
         name: "SuchClient"
     },
     makers: [
