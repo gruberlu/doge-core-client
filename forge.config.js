@@ -1,6 +1,6 @@
 module.exports = {
     packagerConfig: {
-        icon: "./src/assets/icons/mac/icon",
+        icon: "./src/assets/icons/mac/icon.icns",
         name: "SuchClient"
     },
     makers: [
