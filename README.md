@@ -1,3 +1,4 @@
+🚧 Still in development. No Guarantees or Warranties. Use at own risk! 🚧
 # Dogecoin Core Client 
 
 Dogecoin Core Wallet Client based on React and Electron to enable easy and modern UI for the Core Wallet.
