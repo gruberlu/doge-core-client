@@ -63,7 +63,7 @@ export const InfoCard = () => {
                         <div><div className="label">Version:</div><div>{info.version}</div></div>
                         <div><div className="label">Difficulty:</div><div>{info.difficulty}</div></div>
                         <div><div className="label">Connections:</div><div>{info.connections}</div></div>
-                        <div><div className="label">Testnet:</div><div>{info.version ? "Yes" : "No"}</div></div>
+                        <div><div className="label">Testnet:</div><div>{info.testnet ? "Yes" : "No"}</div></div>
                     </div>}
             </Card>
         </div>
