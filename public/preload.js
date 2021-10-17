@@ -11,12 +11,12 @@ contextBridge.exposeInMainWorld(
             const response = await ipcRenderer.invoke('theme:isdark')
             return response
         },
-        getCredentials: async () => {
-            const response = await ipcRenderer.invoke('rpc:creds')
+        getHost: async () => {
+            const response = await ipcRenderer.invoke('rpc:host')
             return response
         },
-        setCredentials: (creds) => {
-            ipcRenderer.invoke('rpc:setcreds', creds)
+        setHost: (host) => {
+            ipcRenderer.invoke('rpc:sethost', host)
         },
     }
 )

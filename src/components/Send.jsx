@@ -1,9 +1,10 @@
-import {useState} from 'react'
-import {Snackbar, Card} from '@material-ui/core'
+import { useState } from 'react'
+import { Snackbar, Card } from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert'
 import * as Icons from '@material-ui/icons'
 import axios from 'axios'
 import Inputfield from './Inputfield'
+import { useCreds } from '../context/CredsContext'
 
 export const Send = () => {
 
@@ -12,26 +13,27 @@ export const Send = () => {
     const [label, setLabel] = useState()
     const [result, setResult] = useState(null)
     const [error, setError] = useState(null)
+    const creds = useCreds()
 
     const submitForm = (e) => {
         e.preventDefault()
 
         const postData = async () => {
-            const creds = await window.electron.getCredentials()
+            const host = await window.electron.getHost()
             const auth = {
-                username:creds.username, 
-                password:creds.password
+                username: creds.username,
+                password: creds.password
             }
-            const url = `http://${creds.host}:${creds.port}/`
+            const url = `http://${host.host}:${host.port}/`
 
             const sendtoaddress = axios.post(url, {
                 jsonrpc: "1.0",
                 method: 'sendtoaddress',
                 params: [address, amount, "", label]
             },
-            {
-                auth: auth
-            })
+                {
+                    auth: auth
+                })
 
             sendtoaddress.then(response => {
                 console.log(response)
@@ -53,9 +55,9 @@ export const Send = () => {
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
-          return;
+            return;
         }
-    
+
         setError(null)
         setResult(null)
     }
@@ -71,10 +73,10 @@ export const Send = () => {
                         <Icons.Sms />
                     </div>
                     <form>
-                        <Inputfield id="address" label="Address" required={true} onChange={(value) => {setAddress(value)}} />
-                        <Inputfield id="amount" label="Amount" required={true} onChange={(value) => {setAmount(value)}} />
-                        <Inputfield id="label" label="Label" onChange={(value) => {setLabel(value)}} />
-                        <button type="submit" onClick={(e) => {submitForm(e)}}>Submit</button>
+                        <Inputfield id="address" label="Address" required={true} onChange={(value) => { setAddress(value) }} />
+                        <Inputfield id="amount" label="Amount" required={true} onChange={(value) => { setAmount(value) }} />
+                        <Inputfield id="label" label="Label" onChange={(value) => { setLabel(value) }} />
+                        <button type="submit" onClick={(e) => { submitForm(e) }}>Submit</button>
                     </form>
                 </div>
             </Card>

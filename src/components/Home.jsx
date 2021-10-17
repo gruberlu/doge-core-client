@@ -5,22 +5,24 @@ import Skeleton from '@material-ui/lab/Skeleton'
 import axios from 'axios'
 import Transaction from './Transaction'
 import { ReactComponent as Coin } from '../assets/icon.svg'
+import { useCreds } from '../context/CredsContext'
 
 export const Home = () => {
 
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [data, setData] = useState({})
+    const creds = useCreds()
 
     useEffect(() => {
         const fetchData = async () => {
-            const creds = await window.electron.getCredentials()
+            const host = await window.electron.getHost()
             const auth = {
                 username: creds.username,
                 password: creds.password
             }
-            const url = `http://${creds.host}:${creds.port}/`
-
+            const url = `http://${host.host}:${host.port}/`
+            console.log(url)
             const getbalance = axios.post(url, {
                 jsonrpc: "1.0",
                 method: 'getbalance',

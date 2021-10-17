@@ -54,9 +54,7 @@ const store = new Store({
             width: 800,
             height: 600
         },
-        rpcCredentials: {
-            username: 'user',
-            password: 'password',
+        rpcHost: {
             host: "localhost",
             port: 22555
         }
@@ -76,13 +74,13 @@ ipcMain.handle('theme:isdark', () => {
     return nativeTheme.shouldUseDarkColors
 })
 
-ipcMain.handle('rpc:creds', () => {
-    const creds = store.get('rpcCredentials')
-    return creds
+ipcMain.handle('rpc:host', () => {
+    const host = store.get('rpcHost')
+    return host
 })
 
-ipcMain.handle('rpc:setcreds', (event, creds) => {
-    store.set('rpcCredentials', creds)
+ipcMain.handle('rpc:sethost', (event, host) => {
+    store.set('rpcHost', host)
 })
 
 app.whenReady().then(() => {

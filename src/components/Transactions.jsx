@@ -4,22 +4,24 @@ import Skeleton from '@material-ui/lab/Skeleton'
 import MuiAlert from '@material-ui/lab/Alert'
 import axios from 'axios'
 import Transaction from './Transaction'
+import { useCreds } from '../context/CredsContext'
 
 export const Transactions = () => {
 
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false)
     const [transactions, setTransactions] = useState()
+    const creds = useCreds()
 
     useEffect(() => {
         const fetchData = async () => {
 
-            const creds = await window.electron.getCredentials()
+            const host = await window.electron.getHost()
             const auth = {
                 username: creds.username,
                 password: creds.password
             }
-            const url = `http://${creds.host}:${creds.port}/`
+            const url = `http://${host.host}:${host.port}/`
 
             const listtransactions = axios.post(url, {
                 jsonrpc: "1.0",

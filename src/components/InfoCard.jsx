@@ -1,32 +1,34 @@
-import {useEffect, useState} from 'react'
-import {Card} from '@material-ui/core'
+import { useEffect, useState } from 'react'
+import { Card } from '@material-ui/core'
 import * as Icons from '@material-ui/icons'
 import axios from 'axios'
+import { useCreds } from '../context/CredsContext'
 
 export const InfoCard = () => {
 
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false)
     const [info, setInfo] = useState()
+    const creds = useCreds()
 
     useEffect(() => {
         const fetchData = async () => {
 
-            const creds = await window.electron.getCredentials()
+            const host = await window.electron.getHost()
             const auth = {
-                username:creds.username, 
-                password:creds.password
+                username: creds.username,
+                password: creds.password
             }
-            const url = `http://${creds.host}:${creds.port}/`
+            const url = `http://${host.host}:${host.port}/`
 
             const getinfo = axios.post(url, {
                 jsonrpc: "1.0",
                 method: 'getinfo',
                 params: []
             },
-            {
-                auth: auth
-            })
+                {
+                    auth: auth
+                })
 
             getinfo.then(response => {
                 // console.log(response)
@@ -42,7 +44,7 @@ export const InfoCard = () => {
 
         const updateData = setInterval(fetchData, 10000)
 
-        return() => clearInterval(updateData)
+        return () => clearInterval(updateData)
     }, [])
 
     const closeInfo = (e) => {
@@ -56,15 +58,15 @@ export const InfoCard = () => {
             <Card className="Card">
                 <button onClick={(e) => closeInfo(e)}><Icons.Close /></button>
                 <h1>Wallet Info</h1>
-                {error  ? <div>Error: {error.message}</div> : !isLoaded ? <div>Loading...</div> :
-                <div className="info">
-                    <div><div className="label">Version:</div><div>{info.version}</div></div>
-                    <div><div className="label">Difficulty:</div><div>{info.difficulty}</div></div>
-                    <div><div className="label">Connections:</div><div>{info.connections}</div></div>
-                    <div><div className="label">Testnet:</div><div>{info.version ? "Yes" : "No"}</div></div>
-                </div>}
+                {error ? <div>Error: {error.message}</div> : !isLoaded ? <div>Loading...</div> :
+                    <div className="info">
+                        <div><div className="label">Version:</div><div>{info.version}</div></div>
+                        <div><div className="label">Difficulty:</div><div>{info.difficulty}</div></div>
+                        <div><div className="label">Connections:</div><div>{info.connections}</div></div>
+                        <div><div className="label">Testnet:</div><div>{info.version ? "Yes" : "No"}</div></div>
+                    </div>}
             </Card>
         </div>
-        )
+    )
 }
 
