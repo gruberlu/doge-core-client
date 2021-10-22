@@ -1,6 +1,7 @@
 const path = require('path')
 
 const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron')
+
 const isDev = require('electron-is-dev')
 
 const Store = require('./store')
@@ -28,7 +29,8 @@ function createWindow() {
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             webSecurity: !isDev
-        }
+        },
+        show: false
     })
 
     win.on('resize', () => {
@@ -44,6 +46,10 @@ function createWindow() {
             win.webContents.openDevTools()
         })
     }
+
+    win.once('ready-to-show', () => {
+        win.show()
+    })
 }
 
 // Load user-preferences.js
