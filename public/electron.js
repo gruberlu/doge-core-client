@@ -1,4 +1,7 @@
 const path = require('path')
+// const axios = require('axios')
+// const https = require('https')
+// const fs = require('fs')
 
 const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron')
 
@@ -88,6 +91,32 @@ ipcMain.handle('rpc:host', () => {
 ipcMain.handle('rpc:sethost', (event, host) => {
     store.set('rpcHost', host)
 })
+
+// const httpsAgent = new https.Agent({
+//     cert: fs.readFileSync(path.join(app.getPath('userData'), 'client.crt')),
+//     key: fs.readFileSync(path.join(app.getPath('userData'), 'client.key')),
+//     ca: fs.readFileSync(path.join(app.getPath('userData'), 'ca.crt')),
+//   })
+
+// const auth = {
+//     username: "usr",
+//     password: "pass"
+// }
+
+// const getinfo = axios.post("https://raspberrypi:443/", {
+//     jsonrpc: "1.0",
+//     method: 'getinfo',
+//     params: []
+// },
+//     {
+//         auth: auth
+//     })
+
+// getinfo.then(response => {
+//     console.log(response)
+// }).catch((error) => {
+//     console.log(error)
+// })
 
 app.whenReady().then(() => {
     createWindow()
