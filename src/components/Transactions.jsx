@@ -30,7 +30,7 @@ export const Transactions = () => {
         const updateData = setInterval(fetchData, 10000)
 
         return () => clearInterval(updateData)
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     const Alert = (props) => {
         return <MuiAlert elevation={6} variant="filled" {...props} />;

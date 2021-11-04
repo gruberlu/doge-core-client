@@ -30,7 +30,7 @@ export const Settings = () => {
         }
 
         fetchCreds()
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleTheme = () => {
         window.electron.invoke('theme:toggle')

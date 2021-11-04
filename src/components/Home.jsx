@@ -35,7 +35,7 @@ export const Home = () => {
 
         return () => clearInterval(updateData)
 
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     const Alert = (props) => {
         return <MuiAlert elevation={6} variant="filled" {...props} />;

@@ -29,7 +29,7 @@ export const InfoCard = () => {
         const updateData = setInterval(fetchData, 10000)
 
         return () => clearInterval(updateData)
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     const closeInfo = (e) => {
         e.preventDefault()
