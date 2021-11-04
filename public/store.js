@@ -27,4 +27,19 @@ function parseFile(path, defaults) {
     }
 }
 
-module.exports = Store
+const store = new Store({
+    configName: 'config',
+    defaults: {
+        windowBounds: {
+            width: 800,
+            height: 600
+        },
+        rpc: {
+            mtls: false,
+            host: "localhost",
+            port: 22555
+        }
+    }
+})
+
+module.exports = store

@@ -3,6 +3,7 @@ import { Snackbar, Card } from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert'
 import * as Icons from '@material-ui/icons'
 import axios from 'axios'
+import https from 'https'
 import Inputfield from './Inputfield'
 import { useCreds } from '../context/CredsContext'
 
@@ -19,31 +20,17 @@ export const Send = () => {
         e.preventDefault()
 
         const postData = async () => {
-            const host = await window.electron.getHost()
-            const auth = {
-                username: creds.username,
-                password: creds.password
-            }
-            const url = `http://${host.host}:${host.port}/`
-
-            const sendtoaddress = axios.post(url, {
-                jsonrpc: "1.0",
-                method: 'sendtoaddress',
-                params: [address, amount, "", label]
-            },
-                {
-                    auth: auth
-                })
-
-            sendtoaddress.then(response => {
-                console.log(response)
-                setResult(response.data.result)
+            let data = {}
+            try {
+                data = await window.electron.invoke('rpc:sendtoaddress', creds, [address, amount, "", label])
+                setResult(data)
                 setError(null)
-            }).catch((error) => {
+            }
+            catch (error) {
+                setError(true)
                 console.log(error)
-                setError(error)
                 setResult(null)
-            })
+            }
         }
 
         postData()

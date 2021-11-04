@@ -1,13 +1,13 @@
 const path = require('path')
-// const axios = require('axios')
-// const https = require('https')
-// const fs = require('fs')
 
 const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron')
 
 const isDev = require('electron-is-dev')
 
-const Store = require('./store')
+const store = require('./store')
+
+const RPCClient = require('./rpc')
+const rpc = new RPCClient()
 
 // Conditionally include the dev tools installer to load React Dev Tools
 let installExtension, REACT_DEVELOPER_TOOLS
@@ -55,20 +55,7 @@ function createWindow() {
     })
 }
 
-// Load user-preferences.js
-const store = new Store({
-    configName: 'config',
-    defaults: {
-        windowBounds: {
-            width: 800,
-            height: 600
-        },
-        rpcHost: {
-            host: "localhost",
-            port: 22555
-        }
-    }
-})
+// IPC
 
 ipcMain.handle('theme:toggle', () => {
     if (nativeTheme.shouldUseDarkColors) {
@@ -83,40 +70,88 @@ ipcMain.handle('theme:isdark', () => {
     return nativeTheme.shouldUseDarkColors
 })
 
-ipcMain.handle('rpc:host', () => {
-    const host = store.get('rpcHost')
-    return host
+ipcMain.handle('rpc:con', () => {
+    const con = store.get('rpc')
+    return con
 })
 
-ipcMain.handle('rpc:sethost', (event, host) => {
-    store.set('rpcHost', host)
+ipcMain.handle('rpc:setcon', (event, con) => {
+    store.set('rpc', con)
 })
 
-// const httpsAgent = new https.Agent({
-//     cert: fs.readFileSync(path.join(app.getPath('userData'), 'client.crt')),
-//     key: fs.readFileSync(path.join(app.getPath('userData'), 'client.key')),
-//     ca: fs.readFileSync(path.join(app.getPath('userData'), 'ca.crt')),
-//   })
+// RPC over IPC
 
-// const auth = {
-//     username: "usr",
-//     password: "pass"
-// }
+ipcMain.handle('rpc:getinfo', async (event, creds) => {
+    let data = {}
+    try {
+        data =  await rpc.getinfo(creds)
+        // console.log(data)
+    }
+    catch (error) {
+        throw new Error('No connection to RPC server!')
+    }
+    return data.data.result
+})
 
-// const getinfo = axios.post("https://raspberrypi:443/", {
-//     jsonrpc: "1.0",
-//     method: 'getinfo',
-//     params: []
-// },
-//     {
-//         auth: auth
-//     })
+ipcMain.handle('rpc:getbalance', async (event, creds) => {
+    let data = {}
+    try {
+        data =  await rpc.getbalance(creds)
+        // console.log(data)
+    }
+    catch (error) {
+        throw new Error('No connection to RPC server!')
+    }
+    return data.data.result
+})
 
-// getinfo.then(response => {
-//     console.log(response)
-// }).catch((error) => {
-//     console.log(error)
-// })
+ipcMain.handle('rpc:listtransactions', async (event, creds, params) => {
+    let data = {}
+    try {
+        data =  await rpc.listtransactions(creds, params)
+        // console.log(data)
+    }
+    catch (error) {
+        throw new Error('No connection to RPC server!')
+    }
+    return data.data.result
+})
+
+ipcMain.handle('rpc:getblockcount', async (event, creds) => {
+    let data = {}
+    try {
+        data =  await rpc.getblockcount(creds)
+        // console.log(data)
+    }
+    catch (error) {
+        throw new Error('No connection to RPC server!')
+    }
+    return data.data.result
+})
+
+ipcMain.handle('rpc:getnewaddress', async (event, creds, params) => {
+    let data = {}
+    try {
+        data =  await rpc.getnewaddress(creds, params)
+        // console.log(data)
+    }
+    catch (error) {
+        throw new Error('No connection to RPC server!')
+    }
+    return data.data.result
+})
+
+ipcMain.handle('rpc:sendtoaddress', async (event, creds, params) => {
+    let data = {}
+    try {
+        data =  await rpc.sendtoaddress(creds, params)
+        // console.log(data)
+    }
+    catch (error) {
+        throw new Error('No connection to RPC server!')
+    }
+    return data.data.result
+})
 
 app.whenReady().then(() => {
     createWindow()

@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Snackbar, Card } from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert'
 import * as Icons from '@material-ui/icons'
-import axios from 'axios'
 import QRCode from 'qrcode.react'
 import Inputfield from './Inputfield'
 import { useCreds } from '../context/CredsContext'
@@ -19,33 +18,17 @@ export const Receive = () => {
         e.preventDefault()
 
         const postData = async () => {
-            const host = await window.electron.getHost()
-            const auth = {
-                username: creds.username,
-                password: creds.password
-            }
-            const url = `http://${host.host}:${host.port}/`
-
-            const getnewaddress = axios.post(url, {
-                jsonrpc: "1.0",
-                method: 'getnewaddress',
-                params: [label]
-            },
-                {
-                    auth: auth
-                })
-
-            getnewaddress.then(response => {
-                console.log(response)
-                setResult(response.data.result)
+            let data = {}
+            try {
+                data = await window.electron.invoke('rpc:getnewaddress', creds, [label])
+                setResult(data)
                 setSuccess(true)
                 setError(null)
-
-            }).catch((error) => {
-                console.log(error)
-                setError(error)
+            }
+            catch (error) {
+                setError(true)
                 setResult(null)
-            })
+            }
         }
 
         postData()

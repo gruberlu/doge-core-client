@@ -5,6 +5,7 @@ import { useCreds, useUpdateCreds } from '../context/CredsContext'
 
 export const Settings = () => {
     const [theme, setTheme] = useState(false)
+    const [mTLS, setMTLS] = useState(false)
     const [username, setUsername] = useState('usr')
     const [password, setPassword] = useState('pass')
     const [hostname, setHostname] = useState('localhost')
@@ -16,23 +17,28 @@ export const Settings = () => {
 
     useEffect(() => {
         const fetchCreds = async () => {
-            const host = await window.electron.getHost()
-            const theme = await window.electron.getTheme()
+            const con = await window.electron.invoke('rpc:con')
+            const theme = await window.electron.invoke('theme:isdark')
 
             setTheme(theme)
 
             setUsername(creds.username)
             setPassword(creds.password)
-            setHostname(host.host)
-            setPort(host.port)
+            setMTLS(con.mtls)
+            setHostname(con.host)
+            setPort(con.port)
         }
 
         fetchCreds()
     }, [])
 
-    const handleChange = () => {
-        window.electron.setTheme()
+    const handleTheme = () => {
+        window.electron.invoke('theme:toggle')
         setTheme(!theme)
+    }
+
+    const handleMTLS = () => {
+        setMTLS(!mTLS)
     }
 
     const Alert = (props) => {
@@ -58,11 +64,12 @@ export const Settings = () => {
                 username: username,
                 password: password
             }
-            const host = {
+            const con = {
+                mtls: mTLS,
                 host: hostname,
                 port: port
             }
-            window.electron.setHost(host)
+            window.electron.invoke('rpc:setcon', con)
             setCreds(creds)
             setResult(true)
         }
@@ -73,8 +80,9 @@ export const Settings = () => {
             <Card className="Card">
                 <form>
                     <h1>Settings</h1>
-                    <div><label>Darkmode:</label><input id="switch" type="checkbox" checked={theme} onChange={() => handleChange()}></input><label className="switch-label" htmlFor="switch"></label></div>
+                    <div><label>Darkmode:</label><input id="switchTheme" class="switch" type="checkbox" checked={theme} onChange={() => handleTheme()}></input><label className="switch-label" htmlFor="switchTheme"></label></div>
                     <h3>RPC Credentials:</h3>
+                    <div><label>mTLS:</label><input id="switchMTLS" class="switch" type="checkbox" checked={mTLS} onChange={() => handleMTLS()}></input><label className="switch-label" htmlFor="switchMTLS"></label></div>
                     <div><label>Username:</label><input value={username} required={true} onChange={(e) => { setUsername(e.target.value) }} /></div>
                     <div><label>Password:</label><input value={password} required type="password" onChange={(e) => { setPassword(e.target.value) }} /></div>
                     <div><label>Host:</label><input value={hostname} required onChange={(e) => { setHostname(e.target.value) }} /></div>

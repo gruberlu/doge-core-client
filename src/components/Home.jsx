@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { Card } from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert'
 import Skeleton from '@material-ui/lab/Skeleton'
-import axios from 'axios'
 import Transaction from './Transaction'
 import { ReactComponent as Coin } from '../assets/icon.svg'
 import { useCreds } from '../context/CredsContext'
@@ -16,52 +15,18 @@ export const Home = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const host = await window.electron.getHost()
-            const auth = {
-                username: creds.username,
-                password: creds.password
+            let data = {}
+            try {
+                data['getbalance'] = await window.electron.invoke('rpc:getbalance', creds)
+                data['listtransactions'] = await window.electron.invoke('rpc:listtransactions', creds, ["*", 5])
+                data['listtransactions'].reverse()
+                data['getblockcount'] = await window.electron.invoke('rpc:getblockcount', creds)
+                setData(data)
+                setIsLoaded(true)
             }
-            const url = `http://${host.host}:${host.port}/`
-            console.log(url)
-            const getbalance = axios.post(url, {
-                jsonrpc: "1.0",
-                method: 'getbalance',
-                params: []
-            },
-                {
-                    auth: auth
-                })
-
-            const listtransactions = axios.post(url, {
-                jsonrpc: "1.0",
-                method: 'listtransactions',
-                params: ["*", 5]
-            },
-                {
-                    auth: auth
-                })
-
-            const getblockcount = axios.post(url, {
-                jsonrpc: "1.0",
-                method: 'getblockcount',
-                params: []
-            },
-                {
-                    auth: auth
-                })
-
-            axios.all([getbalance, listtransactions, getblockcount])
-                .then(axios.spread((...responses) => {
-                    let result = {}
-                    result['getbalance'] = responses[0].data.result
-                    result['listtransactions'] = responses[1].data.result.reverse()
-                    result['getblockcount'] = responses[2].data.result
-                    setData(result)
-                    setIsLoaded(true)
-                })).catch((error) => {
-                    console.log(error)
-                    setError(error)
-                })
+            catch (error) {
+                setError(true)
+            }
         }
 
         fetchData()
