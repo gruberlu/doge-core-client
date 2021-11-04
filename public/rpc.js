@@ -9,11 +9,16 @@ const store = require('./store')
 
 class RPCClient {
     constructor() {
-        this.httpsAgent = new https.Agent({
-                    cert: fs.readFileSync(path.join(app.getPath('userData'), 'client.crt')),
-                    key: fs.readFileSync(path.join(app.getPath('userData'), 'client.key')),
-                    ca: fs.readFileSync(path.join(app.getPath('userData'), 'ca.crt'))
-                })
+        this.httpsAgent = (
+                        fs.existsSync(path.join(app.getPath('userData'), 'client.crt')) && 
+                        fs.existsSync(path.join(app.getPath('userData'), 'ca.crt')) && 
+                        fs.existsSync(path.join(app.getPath('userData'), 'client.key')) 
+                    ) ? 
+                    new https.Agent({
+                        cert: fs.readFileSync(path.join(app.getPath('userData'), 'client.crt')),
+                        key: fs.readFileSync(path.join(app.getPath('userData'), 'client.key')),
+                        ca: fs.readFileSync(path.join(app.getPath('userData'), 'ca.crt'))
+                    }) : null
     }
 
     async getinfo(creds) {
