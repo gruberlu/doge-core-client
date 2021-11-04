@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react'
 import { Card } from '@material-ui/core'
 import Skeleton from '@material-ui/lab/Skeleton'
 import MuiAlert from '@material-ui/lab/Alert'
-import axios from 'axios'
-import https from 'https'
 import Transaction from './Transaction'
 import { useCreds } from '../context/CredsContext'
 

@@ -2,8 +2,6 @@ import { useState } from 'react'
 import { Snackbar, Card } from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert'
 import * as Icons from '@material-ui/icons'
-import axios from 'axios'
-import https from 'https'
 import Inputfield from './Inputfield'
 import { useCreds } from '../context/CredsContext'
 
