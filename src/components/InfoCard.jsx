@@ -1,43 +1,27 @@
 import { useEffect, useState } from 'react'
 import { Card } from '@material-ui/core'
 import * as Icons from '@material-ui/icons'
-import axios from 'axios'
 import { useCreds } from '../context/CredsContext'
 
 export const InfoCard = () => {
-
-    const [error, setError] = useState(null);
+    const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [info, setInfo] = useState()
     const creds = useCreds()
 
     useEffect(() => {
         const fetchData = async () => {
-
-            const host = await window.electron.getHost()
-            const auth = {
-                username: creds.username,
-                password: creds.password
-            }
-            const url = `http://${host.host}:${host.port}/`
-
-            const getinfo = axios.post(url, {
-                jsonrpc: "1.0",
-                method: 'getinfo',
-                params: []
-            },
-                {
-                    auth: auth
-                })
-
-            getinfo.then(response => {
-                // console.log(response)
-                setInfo(response.data.result)
+            let data = {}
+            try {
+                data = await window.electron.invoke('rpc:getinfo', creds)
+                setInfo(data)
+                // console.log(data)
                 setIsLoaded(true)
-            }).catch((error) => {
-                setError(error)
+            }
+            catch (error) {
                 console.log(error)
-            })
+                setError(error)
+            }
         }
 
         fetchData()

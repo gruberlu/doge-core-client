@@ -317,7 +317,7 @@ body {
   color: rgba(216, 216, 216, 0.8);
 }
 
-.App form #switch {
+.App form .switch {
   visibility: hidden;
   width: 0;
   height: 0;
@@ -353,11 +353,11 @@ body {
   transition: left 0.3s ease-out;
 }
 
-.App form #switch:checked + .switch-label {
+.App form .switch:checked + .switch-label {
   background-color: #42d77d;
 }
 
-.App form #switch:checked + .switch-label:after {
+.App form .switch:checked + .switch-label:after {
   left: 21px;
 }
 

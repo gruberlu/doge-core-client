@@ -3,6 +3,7 @@ import { Card } from '@material-ui/core'
 import Skeleton from '@material-ui/lab/Skeleton'
 import MuiAlert from '@material-ui/lab/Alert'
 import axios from 'axios'
+import https from 'https'
 import Transaction from './Transaction'
 import { useCreds } from '../context/CredsContext'
 
@@ -15,30 +16,15 @@ export const Transactions = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-
-            const host = await window.electron.getHost()
-            const auth = {
-                username: creds.username,
-                password: creds.password
-            }
-            const url = `http://${host.host}:${host.port}/`
-
-            const listtransactions = axios.post(url, {
-                jsonrpc: "1.0",
-                method: 'listtransactions',
-                params: ["*", 100]
-            },
-                {
-                    auth: auth
-                })
-
-            listtransactions.then(response => {
-                setTransactions(response.data.result.reverse())
+            let data = {}
+            try {
+                data = await window.electron.invoke('rpc:listtransactions', creds, ["*", 100])
+                setTransactions(data.reverse())
                 setIsLoaded(true)
-            }).catch((error) => {
-                setError(error)
-                console.log(error)
-            })
+            }
+            catch (error) {
+                setError(true)
+            }
         }
 
         fetchData()
