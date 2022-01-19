@@ -20,7 +20,7 @@ export const Home = () => {
                 data['getbalance'] = await window.electron.invoke('rpc:getbalance', creds)
                 data['listtransactions'] = await window.electron.invoke('rpc:listtransactions', creds, ["*", 5])
                 data['listtransactions'].reverse()
-                data['getblockcount'] = await window.electron.invoke('rpc:getblockcount', creds)
+
                 setData(data)
                 setIsLoaded(true)
             }
@@ -38,12 +38,12 @@ export const Home = () => {
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     const Alert = (props) => {
-        return <MuiAlert elevation={6} variant="filled" {...props} />;
+        return <MuiAlert elevation={6} variant="filled" {...props} />
     }
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
-            return;
+            return
         }
 
         setError(null)
@@ -66,16 +66,12 @@ export const Home = () => {
                 <Card className="infoCard Card">
                     <div className="header">Info:</div>
                     <div className="container">
+                        {/* TODO more detailed Balance information */}
                         <div className="label">Balance: </div>
                         <div className="value">
                             <div>{data.getbalance.toFixed(2)}</div>
                             <Coin className="Coin" />
                         </div>
-                    </div>
-                    <div className="seperator"></div>
-                    <div className="container">
-                        <div className="label">Blockcount: </div>
-                        <div className="value">{data.getblockcount}</div>
                     </div>
                 </Card>
 

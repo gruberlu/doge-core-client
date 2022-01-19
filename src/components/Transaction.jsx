@@ -25,6 +25,7 @@ const Transaction = ({ tx, seperator }) => {
 
     const date = new Date(tx.time * 1000)
     const tooltipData = `Date: ${date.toLocaleString()}\nSent to: ${tx.address}\nConfirmations: ${tx.confirmations}\nTXID: ${tx.txid}\n`
+
     return (
         <>
             <div className={tx.abandoned || tx.confirmations === 0 ? "Transaction abandoned" : "Transaction"}>

@@ -405,7 +405,8 @@ body {
 
 .App .Home .infoCard {
   -ms-grid-row: 1;
-  -ms-grid-column: 1;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 2;
   grid-area: info;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -829,6 +830,184 @@ body {
   text-align: center;
   -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+}
+
+.App .Dashboard {
+  height: 100vh;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.App .Dashboard .Grid {
+  height: 100%;
+  width: 100%;
+  max-width: 750px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      grid-template-areas: "binance info info" "network network network" "network network network";
+  position: relative;
+  z-index: 1;
+}
+
+.App .Dashboard .Grid .header {
+  margin: 0px 0px 10px 0px;
+}
+
+.App .Dashboard .Grid .subheader {
+  margin: 0px 0px 5px 0px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.App .Dashboard .Grid .label {
+  margin: 0px 0px 5px 0px;
+  color: lightgray;
+}
+
+.App .Dashboard .Grid .value {
+  margin: 0px 0px 5px 0px;
+  text-align: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.App .Dashboard .Grid .value .Coin {
+  margin: 0px 0px 0px 5px;
+}
+
+.App .Dashboard .Grid .container {
+  margin: 0px 0px 10px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.App .Dashboard .Grid .infoCard {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 2;
+  grid-area: info;
+}
+
+.App .Dashboard .Grid .networkCard {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: network;
+  height: 90%;
+  overflow-y: scroll;
+}
+
+.App .Dashboard .Grid .networkCard .headrow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: 0px 24px 10px 0px;
+}
+
+.App .Dashboard .Grid .networkCard .headrow .headcol {
+  font-weight: bold;
+  width: 50%;
+}
+
+.App .Dashboard .Grid .networkCard .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: 0px 0px 5px 0px;
+}
+
+.App .Dashboard .Grid .networkCard .row .col {
+  width: 50%;
+  overflow-wrap: anywhere;
+}
+
+.App .Dashboard .Grid .networkCard .row button {
+  background: none;
+  outline: none;
+  border: none;
+  color: #e6e6e6;
+  cursor: pointer;
+}
+
+.App .Dashboard .Grid .networkCard .Peer button {
+  background: none;
+  outline: none;
+  border: none;
+  color: #e6e6e6;
+  cursor: pointer;
+}
+
+.App .Dashboard .Grid .networkCard .Peer .row {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.App .Dashboard .Grid .networkCard .Peer .row .label {
+  margin: 0px 10px 0px 0px;
+}
+
+.App .Dashboard .Grid .networkCard .Peer .details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 14px;
+  margin: 0px 24px 0px 0px;
+}
+
+.App .Dashboard .Grid .networkCard .Peer .details div {
+  margin: 0px 0px 5px 0px;
+}
+
+.App .Dashboard .Grid .networkCard .Peer .details .key {
+  width: 50%;
+}
+
+.App .Dashboard .Grid .binanceCard {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: binance;
+}
+
+.App .Dashboard .Grid .seperator {
+  height: 1px;
+  width: 100%;
+  background: #787878;
+  margin: 5px 0px 10px 0px;
+}
+
+.App .Dashboard .Grid .snackbar {
+  bottom: 25px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
 @media (prefers-color-scheme: dark) {

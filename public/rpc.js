@@ -116,6 +116,38 @@ class RPCClient {
             }
         )
     }
+    
+    async getpeerinfo(creds) {
+        const con = store.get('rpc')
+        const protocol = con.mtls ? 'https' : 'http'
+        return await axios.post(`${protocol}://${con.host}:${con.port}/`,
+            {
+                jsonrpc: "1.0",
+                method: 'getpeerinfo',
+                params: []
+            },
+            {
+                auth: creds,
+                httpsAgent: con.mtls ? this.httpsAgent : null
+            }
+        )
+    }
+    
+    async getnettotals(creds) {
+        const con = store.get('rpc')
+        const protocol = con.mtls ? 'https' : 'http'
+        return await axios.post(`${protocol}://${con.host}:${con.port}/`,
+            {
+                jsonrpc: "1.0",
+                method: 'getnettotals',
+                params: []
+            },
+            {
+                auth: creds,
+                httpsAgent: con.mtls ? this.httpsAgent : null
+            }
+        )
+    }
 
 }
 

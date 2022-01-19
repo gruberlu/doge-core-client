@@ -1,5 +1,5 @@
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
-import { Sidebar, Home, Send, Receive, Transactions, Settings, InfoCard } from './components'
+import { Sidebar, Home, Send, Receive, Transactions, Settings, InfoCard, Dashboard } from './components'
 import { ReactComponent as DogeSVG } from './assets/doge.svg'
 import { ReactComponent as CoolDogeSVG } from './assets/cooldoge.svg'
 import { CredsProvider } from './context/CredsContext'
@@ -12,6 +12,7 @@ function App() {
                     <Sidebar />
                     <Switch>
                         <Route path='/' exact component={Home} />
+                        <Route path='/dashboard' component={Dashboard} />
                         <Route path='/send' component={Send} />
                         <Route path='/receive' component={Receive} />
                         <Route path='/transactions' component={Transactions} />

@@ -1,0 +1,149 @@
+.Dashboard{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .Grid{
+        height: 100%;
+        width: 100%;
+        max-width: 750px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-areas: 
+        "binance info info"
+        "network network network"
+        "network network network";
+        position: relative;
+        z-index: 1;
+
+        .header{
+            margin: 0px 0px 10px 0px;
+        }
+
+        .subheader{
+            margin: 0px 0px 5px 0px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .label{
+            // font-size: 20px;
+            margin: 0px 0px 5px 0px;
+            color: lightgray;
+        }
+
+        .value{
+            margin: 0px 0px 5px 0px;
+            text-align: right;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-weight: bold;
+            letter-spacing: 1px;
+
+            .Coin{
+                margin: 0px 0px 0px 5px;
+            }
+        }
+
+        .container{
+            margin: 0px 0px 10px 0px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .infoCard{
+            grid-area: info;
+        }
+        
+        .networkCard{
+            grid-area: network;
+            height: 90%;
+            overflow-y: scroll;
+
+
+            .headrow{
+                display: flex;
+                justify-content: space-around;
+                margin: 0px 24px 10px 0px;
+                                
+                .headcol{
+                    font-weight: bold;
+                    width: 50%;
+                }
+            }
+
+            .row{
+                display: flex;
+                justify-content: space-around;
+                margin: 0px 0px 5px 0px;
+
+                .col{
+                    width: 50%;
+                    padding: 0px 10px 0px 0px;
+                    overflow-wrap: anywhere;
+                }
+
+                button{
+                    background: none;
+                    outline: none;
+                    border: none;
+                    color: $textcolor;
+                    cursor: pointer;
+                }
+            }
+
+            .Peer{
+
+                button{
+                    background: none;
+                    outline: none;
+                    border: none;
+                    color: $textcolor;
+                    cursor: pointer;
+                }
+
+                .row{
+                    justify-content: space-between;
+                
+                    .label{
+                        margin: 0px 10px 0px 0px;
+                    }
+                }
+
+                .details{
+                    display: flex;
+                    font-size: 14px;
+                    margin: 0px 24px 0px 0px;
+
+                    div{
+                        margin: 0px 0px 5px 0px;
+                    }
+
+                    .key{
+                        width: 50%;
+                    }
+                }
+            }
+        }
+        
+        .binanceCard{
+            grid-area: binance;
+        }
+
+        .seperator{
+            height: 1px;
+            width: 100%;
+            background: rgb(120, 120, 120);
+            margin: 5px 0px 10px 0px;
+        }
+
+        .snackbar{
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+}

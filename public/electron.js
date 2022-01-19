@@ -6,6 +6,8 @@ const isDev = require('electron-is-dev')
 
 const store = require('./store')
 
+const axios = require('axios')
+
 const RPCClient = require('./rpc')
 const rpc = new RPCClient()
 
@@ -151,6 +153,44 @@ ipcMain.handle('rpc:sendtoaddress', async (event, creds, params) => {
         throw new Error('No connection to RPC server!')
     }
     return data.data.result
+})
+
+ipcMain.handle('rpc:getpeerinfo', async (event, creds) => {
+    let data = {}
+    try {
+        data =  await rpc.getpeerinfo(creds)
+        // console.log(data)
+    }
+    catch (error) {
+        throw new Error('No connection to RPC server!')
+    }
+    return data.data.result
+})
+
+ipcMain.handle('rpc:getnettotals', async (event, creds) => {
+    let data = {}
+    try {
+        data =  await rpc.getnettotals(creds)
+        // console.log(data)
+    }
+    catch (error) {
+        console.log(error)
+        throw new Error('No connection to RPC server!')
+    }
+    return data.data.result
+})
+
+// Binance API
+ipcMain.handle('binance:price', async () => {
+    let response = {}
+    try {
+        response = await axios.get('https://api.binance.com/api/v3/ticker/price?symbol=DOGEUSDT')
+    }
+    catch (error) {
+        throw new Error('Error while trying to fetch data from Binance API')
+    }
+
+    return response.data
 })
 
 app.whenReady().then(() => {

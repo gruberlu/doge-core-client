@@ -54,6 +54,7 @@ export const Transactions = () => {
         return <Skeleton variant="rect" className="skeleton" height="90%" />
     } else {
         return (
+            // TODO pagination
             <div className="Transactions">
                 <Card className="Card">
                     <h1>Transactions</h1>
