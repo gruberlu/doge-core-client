@@ -1,4 +1,4 @@
-import { HashRouter as Router, Switch, Route } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import { Sidebar, Home, Send, Receive, Transactions, Settings, InfoCard, Dashboard } from './components'
 import { ReactComponent as DogeSVG } from './assets/doge.svg'
 import { ReactComponent as CoolDogeSVG } from './assets/cooldoge.svg'
@@ -10,14 +10,14 @@ function App() {
             <CredsProvider >
                 <div className="App">
                     <Sidebar />
-                    <Switch>
-                        <Route path='/' exact component={Home} />
-                        <Route path='/dashboard' component={Dashboard} />
-                        <Route path='/send' component={Send} />
-                        <Route path='/receive' component={Receive} />
-                        <Route path='/transactions' component={Transactions} />
-                        <Route path='/settings' component={Settings} />
-                    </Switch>
+                    <Routes>
+                        <Route path='/' exact element={<Home />} />
+                        <Route path='/dashboard' element={<Dashboard />} />
+                        <Route path='/send' element={<Send />} />
+                        <Route path='/receive' element={<Receive />} />
+                        <Route path='/transactions' element={<Transactions />} />
+                        <Route path='/settings' element={<Settings />} />
+                    </Routes>
                     <DogeSVG className='doge-svg' />
                     <CoolDogeSVG className='doge-svg-dark' />
                     <InfoCard />
