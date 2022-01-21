@@ -945,6 +945,7 @@ body {
 
 .App .Dashboard .Grid .networkCard .row .col {
   width: 50%;
+  padding: 0px 10px 0px 0px;
   overflow-wrap: anywhere;
 }
 
@@ -1003,11 +1004,9 @@ body {
   margin: 5px 0px 10px 0px;
 }
 
-.App .Dashboard .Grid .snackbar {
-  bottom: 25px;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+.App .Dashboard .snackbar {
+  bottom: 20px;
+  z-index: 1;
 }
 
 @media (prefers-color-scheme: dark) {

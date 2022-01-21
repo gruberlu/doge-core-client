@@ -14,9 +14,16 @@ export const Dashboard = () => {
     useEffect(() => {
         const fetchData = async () => {
             let data = {}
+
+            try {
+                data['price'] = await window.electron.invoke('binance:price')
+            }
+            catch (error) {
+                console.log(error)
+            }
+
             try {
                 data['getinfo'] = await window.electron.invoke('rpc:getinfo', creds)
-                data['price'] = await window.electron.invoke('binance:price')
                 data['getnettotals'] = await window.electron.invoke('rpc:getnettotals', creds)
                 data['getpeerinfo'] = {}
                 data['getpeerinfo']['peers'] = await window.electron.invoke('rpc:getpeerinfo', creds)
@@ -68,7 +75,6 @@ export const Dashboard = () => {
         )
     } else if (!isLoaded) {
         return (
-            // TODO style
             <div className="Dashboard">
                 <div className="Grid">
                     <Skeleton variant="rect" className="skeleton binanceCard" height="90%" />
@@ -87,7 +93,7 @@ export const Dashboard = () => {
                         <div className="seperator"></div>
                         <div className="container">
                             <div className="label">Doge/USD</div>
-                            <div className="value">{Number(data.price.price).toFixed(4)} USD</div>
+                            <div className="value">{data.price ? Number(data.price.price).toFixed(4) : "-"} USD</div>
                         </div>
                     </Card>
                     <Card className="infoCard Card">
