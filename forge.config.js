@@ -2,7 +2,8 @@ module.exports = {
     packagerConfig: {
         icon: "./src/assets/icons/mac/icon.icns",
         name: "SuchClient",
-        executableName: "dogecoin-wallet"
+        executableName: "dogecoin-wallet",
+        asar: true
     },
     makers: [
         {
