@@ -2,6 +2,9 @@
     "name": "dogecoin-wallet",
     "description": "Client for basic interaction with a Dogecoin Node",
     "license": "MIT",
+    "author": {
+        "name": "grbrlks"
+    },
     "version": "0.1.0",
     "main": "public/electron.js",
     "homepage": "./",
