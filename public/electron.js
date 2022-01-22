@@ -2,11 +2,6 @@ const path = require('path')
 
 const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron')
 
-require('update-electron-app')({
-    repo: 'grbrlks/doge-core-client',
-    updateInterval: '1 hour'
-})
-
 const isDev = require('electron-is-dev')
 
 const store = require('./store')
