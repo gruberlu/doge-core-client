@@ -6,21 +6,21 @@ on:
 
 jobs:
   publish:
-  build:
-    runs-on: ${{ matrix.os }}
+    build:
+      runs-on: ${{ matrix.os }}
 
-    strategy:
-      matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
+      strategy:
+        matrix:
+          os: [macos-latest, ubuntu-latest, windows-latest]
 
-    steps:
-    - uses: actions/checkout@v2       
-    - uses: actions/setup-node@master
-      with:
-        node-version: 16
-    - name: install dependencies
-      run: npm install
-    - name: publish
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: npm run publish
+      steps:
+      - uses: actions/checkout@v2       
+      - uses: actions/setup-node@master
+        with:
+          node-version: 16
+      - name: install dependencies
+        run: npm install
+      - name: publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run publish
