@@ -32,7 +32,8 @@ module.exports = {
             repository: {
               owner: "grbrlks",
               name: "doge-core-client"
-            }
+            },
+            draft: true
           }
         }
       ]
