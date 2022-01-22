@@ -17,7 +17,8 @@
         "dev": "concurrently -k -n \"react,electron\" -c \"blue,cyan\" \"BROWSER=none npm start\" \"npm:electron\"",
         "electron": "wait-on tcp:3000 && electron-forge start",
         "package": "react-scripts build && electron-forge package",
-        "make": "react-scripts build && electron-forge make"
+        "make": "react-scripts build && electron-forge make",
+        "publish": "react-scripts build && electron-forge publish"
     },
     "eslintConfig": {
         "extends": [
