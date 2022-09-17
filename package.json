@@ -52,7 +52,7 @@
     },
     "dependencies": {
         "@material-ui/core": "^4.12.4",
-        "@material-ui/icons": "^4.11.2",
+        "@material-ui/icons": "^4.11.3",
         "@material-ui/lab": "*",
         "axios": "^0.27.2",
         "electron-is-dev": "^2.0.0",
